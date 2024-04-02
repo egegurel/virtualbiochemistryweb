@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+  background-color: #ccc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.rowxxx {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.containerxxx {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+@media (max-width: 800px) {
+  .rowxxx {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+
+      <div class="rowxxx">
+        <div class="col-75">
+          <div class="containerxxx">
+
+            <form id="mypaymentcheckoutid" action="https://www.paytr.com/odeme" method="post" onsubmit="return combineAddressFields()">
+            
+              <div class="rowxxx">
+                <div class="col-50">
+                  <h3>Billing Address</h3>
+                  <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                  <input type="text" id="fname" name="user_name" placeholder="">
+
+                  <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                  <input type="text" id="adr" name="address" placeholder="">
+                  <label for="city"><i class="fa fa-institution"></i> City</label>
+                  <input type="text" id="city" name="city" placeholder="">
+
+                  <div class="rowxxx">
+                    <div class="col-50">
+                      <label for="state">State</label>
+                      <input type="text" id="state" name="state" placeholder="">
+                    </div>
+                    <div class="col-50">
+                      <label for="zip">Zip</label>
+                      <input type="text" id="zip" name="zip" placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-50">
+                  <h3>Payment</h3>
+                  <label for="fname">Accepted Cards</label>
+                  <div class="icon-container">
+              <img src="tekparca-logolar-1.jpg" alt="Akbank" style="width: 150px;">
+                  </div>
+                  <label for="cname">Name on Card</label>
+                  <input type="text" id="cname" name="cc_owner" placeholder="">
+                  <label for="ccnum">Credit card number</label>
+                  <input type="text" id="ccnum" name="card_number" placeholder="">
+                  <label for="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expiry_month" placeholder="">
+                  <div class="rowxxx">
+                    <div class="col-50">
+                      <label for="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expiry_year" placeholder="">
+                    </div>
+                    <div class="col-50">
+                      <label for="cvv">CVV</label>
+                      <input type="text" id="cvv" name="cvv" placeholder="">
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+           
+              <input type="hidden" id="merchant_id" name="merchant_id" value="">
+              <input type="hidden" id="user_ip" name="user_ip" value="">
+              <input type="hidden" id="merchant_oid" name="merchant_oid" value="">
+              <input type="hidden" id="email" name="email" value="">
+              <input type="hidden" id="payment_type" name="payment_type" value="">
+              <input type="hidden" id="payment_amount" name="payment_amount" value="">
+              <input type="hidden" id="currency" name="currency" value="">
+              <input type="hidden" id="test_mode" name="test_mode" value="">
+              <input type="hidden" id="non_3d" name="non_3d" value="">
+              <input type="hidden" id="merchant_ok_url" name="merchant_ok_url" value="">
+              <input type="hidden" id="merchant_fail_url" name="merchant_fail_url" value="">
+              <input type="hidden" id="max_installment" name="max_installment" value="">
+              <input type="hidden" id="user_address" name="user_address" value="">
+              <input type="hidden" id="user_phone" name="user_phone" value="">
+              <input type="hidden" id="user_basket" name="user_basket" value="">
+              <input type="hidden" id="debug_on" name="debug_on" value="">
+              <input type="hidden" id="lang" name="lang" value="">
+              <input type="hidden" id="client_lang" name="client_lang" value="">
+              <input type="hidden" id="paytr_token" name="token" value="">
+              
+              <input type="hidden" id="no_installment"  name="no_installment" value="">
+              <input type="hidden" id="non3d_test_failed" name="non3d_test_failed" value="">
+              <input type="hidden" id="installment_count" name="installment_count" value="">
+              <input type="hidden" id="card_type" name="card_type" value="">
+            
+              <input type="submit" value="Continue to checkout" class="btn">
+            </form>
+          </div>
+        </div>
+        <div class="col-25">
+          <div class="containerxxx">
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>1</b></span></h4>
+            <p><a href="#">Online Consultation</a> <span class="price">$50</span></p>
+
+            <hr>
+            <p>Total <span class="price" style="color:black"><b>$50</b></span></p>
+          </div>
+        </div>
+      </div>
+      
+
+
+<script>
+ const socketv = new WebSocket('wss://virtualbiochemistry.com:443');
+  socketv.addEventListener('message', function(event){
+      var mydata = JSON.parse(event.data);
+      if(mydata.type==='clickedoverbutton'){
+
+        console.log('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ');
+  fetch('/paymentcheckouts2', {
+  headers: {
+    'Accept': 'application/json',
+  }
+}).then(response => response.json()).then(data => {
+    
+    Object.values(data).forEach(paymentCheckoutData=>{
+      console.log('you are in the paymentcheckouts2 fetch');
+      console.log(paymentCheckoutData.token);
+      document.getElementById('merchant_id').value = paymentCheckoutData.merchant_id ;
+        document.getElementById('user_ip').value = paymentCheckoutData.user_ip ;
+        document.getElementById('merchant_oid').value = paymentCheckoutData.merchant_oid ;
+        document.getElementById('email').value = paymentCheckoutData.email ;
+        document.getElementById('payment_type').value = paymentCheckoutData.payment_type;
+        document.getElementById('payment_amount').value = paymentCheckoutData.payment_amount ;
+        document.getElementById('currency').value = paymentCheckoutData.currency ;
+        document.getElementById('test_mode').value = paymentCheckoutData.test_mode ;
+        document.getElementById('non_3d').value = paymentCheckoutData.non_3d ;
+        document.getElementById('merchant_ok_url').value = paymentCheckoutData.merchant_ok_url ;
+        document.getElementById('merchant_fail_url').value = paymentCheckoutData.merchant_fail_url ;
+        document.getElementById('max_installment').value = paymentCheckoutData.max_installment ;
+        document.getElementById('user_address').value = paymentCheckoutData.user_address;
+        document.getElementById('user_phone').value = paymentCheckoutData.user_phone ;
+        document.getElementById('user_basket').value = paymentCheckoutData.user_basket;
+        document.getElementById('debug_on').value = paymentCheckoutData.debug_on;
+        document.getElementById('lang').value = paymentCheckoutData.lang;
+        document.getElementById('client_lang').value = paymentCheckoutData.client_lang ;
+        document.getElementById('token').value = paymentCheckoutData.token ;
+
+        document.getElementById('paytr_token').value = paymentCheckoutData.paytr_token ;
+        document.getElementById('no_installment').value = paymentCheckoutData.no_installment ;
+        document.getElementById('non3d_test_failed').value = paymentCheckoutData.non3d_test_failed;
+        document.getElementById('installment_count').value = paymentCheckoutData.installment_count;
+        document.getElementById('card_type').value = paymentCheckoutData.card_type;
+
+
+
+    })
+  }).catch(error => {
+    console.error('Fetch request failed:', error);
+  });
+  document.getElementById('mypaymentcheckoutid').addEventListener('submit', function(event) {
+    function combineAddressFields() {
+      // Collect the values from the address, state, and zip fields
+      var address = document.getElementById('adr').value;
+      var state = document.getElementById('state').value;
+      var zip = document.getElementById('zip').value;
+      var city = document.getElementById('city').value;
+      // Combine the values into one string
+      var combinedAddress = address + ' ' + state + ' ' + zip + ' ' + city;
+    
+      // Assign the combined value to the hidden input field
+      document.getElementById('user_address').value = combinedAddress;
+    
+      // Disable the original address fields so they are not submitted
+      document.getElementById('adr').disabled = true;
+      document.getElementById('state').disabled = true;
+      document.getElementById('zip').disabled = true;
+      document.getElementById('city').disabled = true;
+
+      return true; // Proceed with form submission
+    }
+})
+
+//////
+      }
+  })
+/*
+  <iframe src="https://virtualbiochemistry.com/paymentcheckouts" id="paytriframe123" frameborder="0"
+    scrolling="yes" style="height:650px; min-height: 650px; visibility:hidden; width:1100px; position:absolute; top:1200px; right:400px;transform: scale(0.8);"></iframe>
+  //
+    </script>
+     <script src="apijs.js"></script>
+</body>
+</html>

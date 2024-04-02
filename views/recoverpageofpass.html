@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Gürel Lab Result Consultation</title>
+    <link rel="stylesheet" type="text/css" href="recoverthepasswordcss.css"> 
+</head>
+<body id="thebodyofrecoverpassword">
+    <div id="coverupinputs">
+      
+        <button id="gotomainmenufromrec">
+            <img src="lefticon2.png" id="idoflefticon" height="30" width="30">
+            Back to main page
+        </button>
+        <p id="notifparagraph">Please define a strong password with minimum 8 characters length, mixed with letters, numerical and special characters.</p>
+        <form action="ontherecoveringpass" name="ontherecoverpass" id="ontherecoverpass" method="POST">
+
+            <input type="password" id="recoveringmypass" name="recoveringmypass" placeholder="Enter your new password" minlength="6" required>
+            <input type="password" id="recoveringmypass2" name="recoveringmypass2" placeholder="Re-enter your password" minlength="6" required>
+
+            <button name="sendingrecoverpassbutton" id="sendingrecoverpassbutton" type="submit">Submit</button>
+        </form>
+    </div>
+   
+<script>
+    document.getElementById("gotomainmenufromrec").addEventListener("click", function() {
+    window.location.href = "newformat.html";
+    });
+    const passwordofrec = document.getElementById('recoveringmypass');
+        const passwordConfirmofrec = document.getElementById('recoveringmypass2');
+
+        function validatePassword2() {
+            if (passwordofrec.value !== passwordConfirmofrec.value) {
+                passwordConfirmofrec.setCustomValidity("Passwords do not match");
+            } else {
+                passwordConfirmofrec.setCustomValidity("");
+            }
+        }
+
+        passwordofrec.addEventListener('input', validatePassword2);
+        passwordConfirmofrec.addEventListener('input', validatePassword2);
+        
+      
+
+
+        const socketv = new WebSocket('ws://localhost:4423');
+    socketv.addEventListener('message', function(event) {
+        const data = JSON.parse(event.data);
+if (data.type === 'passwordupdatedx') {
+alert(data.message);
+}});
+
+
+</script>
+<script src="apijs.js"></script>
+</body>
+
+</html>

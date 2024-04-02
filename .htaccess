@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteCond %{SERVER_NAME} =www.virtualbiochemistry.com [OR]
+RewriteCond %{SERVER_NAME} =virtualbiochemistry.com
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,QSA,R=permanent]

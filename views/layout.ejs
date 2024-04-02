@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <title>iFrame Odeme Sayfası</title>
+
+</head>
+
+
+<body>
+    <script src="https://www.paytr.com/js/iframeResizer.min.js"></script>
+    <iframe id="paytriframe" frameborder="0" scrolling="no"
+        style="width: 100%;"></iframe>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        var iframetoken = "<%= iframetoken %>";
+        if (iframetoken) {
+          document.getElementById('paytriframe').src = `https://www.paytr.com/odeme/guvenli/${iframetoken}`;
+        }
+      });
+      </script>
+    <script>iFrameResize({}, '#paytriframe');</script>
+</body>
+
+</html>

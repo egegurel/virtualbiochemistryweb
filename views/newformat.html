@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+
+    <title>Gürel Lab Result Consultation</title>
+    <link rel="stylesheet" type="text/css" href="cssofnewformat.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="myscss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <!-- Include jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Include Country Select JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/css/countrySelect.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/js/countrySelect.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517092391">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16517092391');
+</script>
+<!-- Event snippet for Satın alma işlemi conversion page -->
+<script>
+    gtag('event', 'conversion', {
+        'send_to': 'AW-16517092391/tWCnCL7C8aEZEKeo-8M9',
+        'value': 1.0,
+        'currency': 'EUR',
+        'transaction_id': ''
+    });
+  </script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DXVTK4YLXZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DXVTK4YLXZ');
+</script>
+</head>
+<body id="mainpagebodyid" onload="slider12()">
+
+    <div id = container>
+        <div class="topside">
+            <h1 class="entrance">Ask your questions for your lab results, let us answer you!</h1>            
+            <button id="Login"> Login/Signup</button>
+            
+            <button id="UserAfterLogged">My Profile</button>
+            <button id="AdminAfterLogged">My Profile</button>
+
+            <div id="ListofAdminAfterLogged">
+                <div id="childListofAdminAfterLogged">
+
+                    <button id="returntoprofileforadmingbutton" name="returntoprofileforadmingbutton"> Return to Admin Page </button>
+                    
+                    <button id="Logout2">Logout</button>
+                </div>
+            </div>
+            <div id="ListofUserAfterLogged">
+                <div id="childListofUserAfterLogged">
+                    <button id="GoToProfilee">Return to my profile</button>
+
+                    <button id="Logout">Logout</button>
+                  
+                </div>
+            </div>
+            <button id="Contact"><a href="#contact">Contact</a></button>
+            <button id="Aboutus"><a id="AboutAnc" href="aboutpage.html">About Page</a></button>
+            <button id="my-profile-button">My Profile</button>
+            <div class="senddoc"></div>
+                <img id="rightarrow1" src="rightarrow.png" width="100" height="100">
+                <img id="docicon" src="bloodicon.jpg" width="150" height="150">
+                    <p id="easysendh">Easy send your results, introduce the case <br>and ask your questions to doctor </p>
+
+            <div class="weeval2day"></div>
+                <img id="rightarrow2" src="rightarrow.png" width="100" height="100">
+                <img id="clockicon" src="clockicon.png" width="150" height="150">
+                    <p id="waiting">Max 3 day await </p>
+
+
+
+            <div class="yourresultready"></div>
+                <img id="feedbackicon" src="feedbackicon.png" width="150" height="150">
+                    <p id="feedback">Then our doctor would answer to your questions with his expert opinions. </p>
+
+        </div>
+        <div>    
+            <h2>Welcome to online lab result consultancy platform by Dr. Abdülkadir Gürel</h2>
+        </div>
+        </hr>
+        <div class="photo">
+            <img class="kadirgurel" src="kadirgurel.png" width="650" height="650">
+        </div>
+        <div class ="explaintocustomer"> 
+            <h1 class="whatwedopa">What we doing ?  </h1> 
+            <div class = "howwork1">
+            <h1 id="howwork">What is Scope of Our Consultancy, How We Work and How Evaluating Process Going?  </h1>
+        </div>
+        
+        </div> <hr/>
+    
+        <div class="introduction">
+            <div class="changeparagraphsfeature">
+            
+            <ul id="pintroduction" > 
+                <li>This is online and private consultancy website for biochemistry lab results.</li></br>
+                <li>Upon your questions over your lab results in context of biochemistry, our doctor will evaluate your blood results, gives advice to you, he might enlight any question you stuck on your results and will reply your questions. This might be beneficial for 
+                    patients in situations since many times seem contradictions between patients situation and present blood results.  </li>
+                <li>Doctor might asks to you about dietary, your drugs, lifestyle, age, weight or any related specific detail related to your question that seem important for give best advice to you. </li>
+                <li>After each request of you and following answer from doctor, there would be chat interface would be opened for a limited time for further questions directly to doctor. This is beneficial for further clarification and assist.</li>
+                <li>Maximum 3 days reply time has to be awaited for our answers. </li>
+
+
+
+            </ul>
+
+            </div>
+            <img id = "digitalh" src="digitalh.jpeg" height="320" width="320">
+            <div class="expand">
+              <ul id="pintroduction2">
+                <li>In order to take consultancy from us, you have to have an account. All processes including starting enquiry can be done in your own profile. </li>
+                <li>Opening a query upon your lab results is begins sending an enquiry to doctor, you can write and explain your situation , also sending a visual content of lab results options is available in .jpg .png format.</li>
+                <li>When doctor is answered to your question, if you have further question related to answer of doctor, there would be chat interface available for a limited time so you can make bidirectional chat for further clarification on your questions.</li>
+                <li>Refund options are available</li>
+                <li>Preferred language is English for communication</li>
+                
+              </ul>
+            </div>
+            
+        </div><hr>
+
+
+    </div>
+        <div class="slide">
+            
+            <div class="slide2">
+                <img src="virtualassistant.jpeg" height="600" width="500" id="slideit" name="slideit">
+            </div>
+
+        </div>
+        <div class="text-slide">
+            <p class="ticker-text">With Digital Health, You Can Take Alternative Suggestions to Your Problems!</p><br>
+            
+        </div>
+
+
+        <div id="belowside">
+            <label class="labelofsvgid" for="svgid">US Dollar payment</label>
+                            <svg id="svgid" xmlns="http://www.w3.org/2000/svg"style="color:green" width="36" height="36" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                  </svg>
+                  <svg id="dollarid" xmlns="http://www.w3.org/2000/svg"  width="36" height="36" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                    <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
+                  </svg>
+                  <label class="labelofsvgchat" for="svgchat">Whatsapp Communication</label>
+                  <svg id="svgchat" xmlns="http://www.w3.org/2000/svg" style="color:blue;" width="40" height="40" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
+                    <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                    <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"/>
+                  </svg>
+                  
+                  <label class="labelofchatting">Chat availability upon accomplishment of query</label>
+                  <label class="labelofrefund" for="refundicon">Refund available</label>
+                  <img id="refundicon" src="refundicon.png" height="36" width="36">
+                  <i class='fas fa-money-check-alt' style='font-size:48px;color:red'></i>
+                  <label class="labelofclock" for="clockid">Doctors answer in 3 days!</label>
+                  <svg id="clockid" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                    <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9z"/>
+                    <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1zm1.038 3.018a6 6 0 0 1 .924 0 6 6 0 1 1-.924 0M0 3.5c0 .753.333 1.429.86 1.887A8.04 8.04 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5M13.5 1c-.753 0-1.429.333-1.887.86a8.04 8.04 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1"/>
+                  </svg>
+                    <p class="labelofheart" >Expert analysis!</p>
+                  <i id="heartid"class="fa fa-heart" style="font-size:38px;color:red"></i>
+                  <i id="doctoricon" class="fa fa-user-md" style="font-size:48px;color:red"></i>
+                  <img id="digitaliconpngid" src="digitaliconpng.png" height="50" width="50">
+                  <label class="labelofdigitalicon" for="digitaliconpngid">100% Digital</label>
+        </div>
+        <div id="contact">
+            
+            <h1 class = "contactus">Contact Us</h1>
+            <ul class="contactinfo">
+                <li>GÜREL Company <br></li>
+                <li>Phone : +90 507 682 08 76</li>
+                <li>Adress: Cumhuriyet Mahallesi Saffet Efendi Sk. Papatya Apt. No :39/04 Merkez/Uşak </li>
+                <li>E-mail : egegurel@virtualbiochemistry.com</li>
+              
+
+            </ul>
+        </div>
+
+ 
+    <form action="take" name="logpagename" id="logpagename" method="POST">
+        <div class="logpage">
+            
+            <img class ="logicon" src="logicon3.png" width="100" height="100">
+            <button id="exit12">
+                <img id="ssss" src="exit1.png" alt="ww" width="25" height="25"></button>
+            <div class="lck">
+                <img class ="lockicon" src="lockicon.png" width="30" height="30">  
+                    
+                <input type="text" id="enternamelog" name="enternamelog" placeholder="Enter your username" required>
+                <button id="submitbuttononlog" name="submitbuttononlog"  type="submit">Submit</button>
+                
+            </div>
+            <div class="passwordd">
+                    
+                <input type="password" id="enterpasswordlog" name="enterpasswordlog" minlength="6" placeholder="Enter your password" required>
+                        
+                    
+                <img class ="accounticon" src="accounticon.png" width="30" height="30">
+
+                
+                <a id="b">Register a User</a>
+                <a href="forgetpassword.html" id="a">Forget Password?</a>
+            </div>
+            
+        </div>
+        
+    </form>
+
+    <div id="registeringuserform">
+        <form action="takeiteasy" name="formofregister" id="formofregister" method="POST" autocomplete="off" >
+            <label class="labelofusernameregister" for="usernameonregister">Enter a username:</label>
+            <input type="text" id="usernameonregister" name="usernameonregister" placeholder="" required>
+
+               <label class="label00" for="nameonregister">Enter Your Name:</label>
+               <input type="text" id="nameonregister" name="nameonregister" placeholder="" value="" required />
+            
+            
+              <label class="label000" for="surnameonregister">Enter Your Surname:</label>
+              <input type="text" id="surnameonregister" name="surnameonregister" placeholder="" value="" required>
+          
+                <label class="day1" for="day">Day:</label>
+                <input type="number" id="day" name="day" min="1" max="31" value="" required>
+           
+                <label class="month1" for="month">Month:</label>
+                <input type="number" id="month" name="month" min="1" max="12" value="" required>
+         
+        
+                <label class="year1" for="year">Year:</label>
+                <input type="number" id="year" name="year" min="1900" max="2099" value="" required>
+         
+
+            <label class="gender1" for="gender">Gender:</label><br>    
+                <input type="radio" id="female" name="gender" value="female">
+                <img class="iconmof" src="morficon.png" height="150" width="150">
+
+                   <input type="radio" id="male" name="gender" value="male">
+            
+                <div id="itsidofphone">
+                <label id="labelofphone" for="phone" >Phone:</label>
+                <input id="phone" type="tel" name="phone" value="">
+                </div>
+                
+                <div id="itsidofcountry">
+                <label id="labelifofcountry" for="country">Country:</label>
+                <input id="country" type="text" name="country" value="">
+                </div>
+                <label id="labelofstate" for="state">State/Province/Region:</label>
+                <input id="state" type="text" name="state" value="">
+                
+                <label id="labelofcity" for="city">City:</label>
+                <input id="city" type="text" name="city" value="">
+
+                <label id="labelofstreet" for="street">Street:</label>
+                <input id="street" type="text" name="street" value="">
+
+                <label id="labelofzippostal" for="zippostal">Zip/Postal:</label>
+                <input id="zippostal" type="text" name="zippostal" value="">
+
+              <label class="label0" for="emailonregister">Enter Your E-mail:</label>
+              
+               <input type="email" id="emailonregister" name="emailonregister" placeholder="" value="" required>
+            
+           
+                <label class="label1" for="passwordonregister" >Password:</label>
+            
+               
+                <input type="password" id="passwordonregister" name="passworodnregister" placeholder="" minlength="8" value ="" required>
+          
+            
+                <label class="label2" for="passwordagainonregister">Confirm Password:</label>
+                <input type="password" id="passwordagainonregister" name="passwordagainonregister" placeholder="" minlength="8" value="" required>
+            
+
+           
+         
+           
+            <button id="submitbuttononregister" name="submitbuttononregister" type="submit">Submit</button>
+            <p>Note: Please choose a password with minimum length of 8 characters,<br> mix of uppercase and lowercase letters,<br>add numbers and special characters (e.g., !, @, #, $, %).</p>
+        </form>
+         
+        <a id ="hreftomainmenu">
+           <h2>Back to Main Page</h2>
+        </a>
+        
+    </div>
+    <button type="button" id="clickandshowquestion" name="clickandshowquestion"> 
+        <img src="Communication-email-blue-icon.png" id="imgbuttonofquestiononnmainpage" name="imgbuttonofquestiononnmainpage" width="150" height="150"/>
+        <p id="clickandshowquestionpar" name="clickandshowquestionpar">For contact! </p>
+    </button>
+    <button type="button " id="buttonidexiticon" name="buttonidexiticon">
+        <img src="turnoff.png" id="iconidmainpageask" name="iconidmainpageask" width="35" height="35"/>
+    </button>
+    <form action="/routeofaskedquestionsonmainpage" name="nameofaskedquestionsonmainpage" id="nameofaskedquestionsonmainpage" method="POST">
+        <div id="askingquestionsid" name="askingquestionsid">
+   
+                <h4 id="askingquestionsidh2" name="askingquestionsid">We will reply via e-mail to your questions</h2>
+                <input type="text" id="askingquestionsidname" name="askingquestionsidname"placeholder="Your Name" required>
+                <input type="email" id="askingquestionsidemail" name="askingquestionsidemail" placeholder="Your Email" required>
+               <textarea id="askingquestionsidquestion" row="7" cols="50" name="askingquestionsidquestion" placeholder="Write Your Question"></textarea>
+               <br>
+                <button  id="askingquestionsidbutton" name="askingquestionsidbutton" type="submit"> Send </button>
+         
+        </div>
+    </form> 
+    
+    <button id="whatsapid">
+        <a id="Chat-on-WhatsApp" href="https://wa.me/905076820876"> <img alt="Chat on WhatsApp" src="whatsappicon.png" width="100px" height="100px" />
+            
+     </button>
+  
+<script>
+     document.addEventListener("DOMContentLoaded", function() {
+        var input = document.querySelector("#phone");
+        var iti = window.intlTelInput(input, {
+            // Initialization options
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+    
+        // Assuming your form has an id="formofregister"
+        var form = document.querySelector("#formofregister");
+        form.addEventListener('submit', function() {
+           var c =  input.value 
+            c = iti.getNumber();
+            console.log(c);
+        });
+    });
+</script>        
+
+
+<script>
+    $("#country").countrySelect({
+      // Optional: specify the default country
+      defaultCountry: "us",
+      // Optional: include only specific countries
+      // onlyCountries: ['us', 'gb', 'ca'],
+      // Optional: exclude specific countries
+      // excludeCountries: ['dk', 'fi'],
+      // Optional: customize the display of the dropdown
+      // responsiveDropdown: true,
+    });
+  </script>
+  
+
+    <script>
+
+
+const socketv = new WebSocket('wss://virtualbiochemistry.com:443');
+
+        document.getElementById('Logout').addEventListener("click", function(){
+            document.cookie = "userLoggedData=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            history.replaceState(null, null, '/');
+            window.location.href = 'newformat.html';
+        })
+ 
+        document.getElementById('Logout2').addEventListener("click", function(){
+            document.cookie = "userLoggedData=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            history.replaceState(null, null, '/');
+            window.location.href = 'newformat.html';
+        })
+ 
+        const variableofreturningtoadmin = document.getElementById("returntoprofileforadmingbutton");
+        variableofreturningtoadmin.addEventListener("click", function(){
+            
+            function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.trim().split('=');
+                if (cookieName === name) {
+                    return decodeURIComponent(cookieValue);
+                }
+            }
+            return null;
+        }
+        const varofcheckifcookie =  getCookie('userLoggedData');
+        if(varofcheckifcookie){
+            const parsethecookieofadmin = JSON.parse(varofcheckifcookie);
+            const parsethecookieofadmin2 = parsethecookieofadmin.username; 
+            window.location.href = '/manager/' + parsethecookieofadmin2 +'?'+'success=true';
+        }
+        
+        })
+     const forturnoffoveradmin = document.getElementById("Login");
+        const urlParamsx = new URLSearchParams(window.location.search);
+        const varListofAdminAfterLogged = document.getElementById("ListofAdminAfterLogged");
+       const buttonadminafterlogged = document.getElementById("AdminAfterLogged");
+        const path0000 = window.location.pathname;
+        const pathSegments = path0000.split('/');
+        const isManager = pathSegments.includes('manager');
+
+
+        buttonadminafterlogged.addEventListener("click", function(){
+        if (varListofAdminAfterLogged.style.display === "none") {
+            varListofAdminAfterLogged.style.display = "block";
+        } else {
+            varListofAdminAfterLogged.style.display = "none";
+    }})
+
+        const successzz = urlParamsx.get('success');
+        if(isManager){
+            document.addEventListener("DOMContentLoaded", function(){
+          
+                forturnoffoveradmin.style.visibility = "hidden";
+                buttonadminafterlogged.style.visibility = "visible";
+            })
+
+            
+        }
+        if (successzz === 'true') {
+            
+            document.addEventListener('DOMContentLoaded', function() {
+   
+                const loginButtonThenTurnoff = document.getElementById('Login');
+            
+                if (loginButtonThenTurnoff) {   
+                    loginButtonThenTurnoff.style.visibility = 'hidden';
+                    UserAfterLogged.style.visibility = "visible";
+                }
+            });
+        }
+
+        const goingtomyprofile = document.getElementById("GoToProfilee");
+        goingtomyprofile.addEventListener("click", function(){
+            function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.trim().split('=');
+                if (cookieName === name) {
+                    return decodeURIComponent(cookieValue);
+                }
+            }
+            return null;
+        }
+
+        // Example: Read a specific cookie named "userLoggedData"
+        const userLoggedDataCookie22 = getCookie('userLoggedData');
+
+        if (userLoggedDataCookie22) {
+            console.log('Value of userLoggedData cookie:', userLoggedDataCookie22);
+
+            // You can parse the JSON if needed
+            const userData99= JSON.parse(userLoggedDataCookie22);
+            userData9900 = userData99.username;
+            window.location.href = '/user/' + userData9900;
+        } else {
+            console.log('userLoggedData cookie not found.');
+        }
+
+        })
+
+const imgiconofshowquestion =  document.getElementById("clickandshowquestion");
+   const imgiconofshowquestion2 = document.getElementById("imgbuttonofquestiononnmainpage");
+   const dividofshowquestion= document.getElementById("askingquestionsid");
+   const buttonidofexitshowquestion = document.getElementById("buttonidexiticon");
+  const paragraphidofaskquestion = document.getElementById("clickandshowquestionpar");
+  const constwhatsapid = document.getElementById("whatsapid");
+   imgiconofshowquestion2.addEventListener("click",function(){
+    var computedStyleeee = window.getComputedStyle(imgiconofshowquestion2);
+
+  
+        if (computedStyleeee.getPropertyValue("visibility") === "visible") {
+            imgiconofshowquestion2.style.visibility = "hidden";
+            dividofshowquestion.style.visibility = "visible";
+            buttonidofexitshowquestion.style.visibility = "visible";
+            paragraphidofaskquestion.style.visibility="hidden";
+            constwhatsapid.style.visibility = "hidden";
+        }
+})
+buttonidofexitshowquestion.addEventListener("click", function(){
+    constwhatsapid.style.visibility = "visible";
+
+})
+const constchatonwhatsap = document.getElementById("Chat-on-WhatsApp");
+
+imgiconofshowquestion.addEventListener("click", function(){
+        if(constwhatsapid.style.visibility === "visible"){
+            constwhatsapid.style.visibility = "hidden";
+            constchatonwhatsap.style.visibility = "hidden";
+        }});
+
+
+
+buttonidofexitshowquestion.addEventListener("click", function(){
+    var computedStyleeee2 = window.getComputedStyle(imgiconofshowquestion2);
+    var computedStyleeee3 = window.getComputedStyle(buttonidofexitshowquestion);
+    dividofshowquestion
+    var computedStyleeee4 = window.getComputedStyle(dividofshowquestion);
+    if(computedStyleeee4.getPropertyValue("visibility") === "visible"){
+        imgiconofshowquestion2.style.visibility = "visible";
+            dividofshowquestion.style.visibility = "hidden";
+            buttonidofexitshowquestion.style.visibility = "hidden";
+            paragraphidofaskquestion.style.visibility = "visible";
+    }
+})
+      
+
+const varListofUserAfterLogged = document.getElementById("ListofUserAfterLogged");
+const varUserAfterLogged = document.getElementById("UserAfterLogged");
+
+varUserAfterLogged.addEventListener("click", function(){
+    if (varListofUserAfterLogged.style.display === "none") {
+        varListofUserAfterLogged.style.display = "block";
+    } else {
+        varListofUserAfterLogged.style.display = "none";
+    }
+})
+
+/*
+var usernameValue = ''; // Declared in the global scope
+
+function updateUsername() {
+    usernameValue = document.getElementById('enternamelog').value;
+    return usernameValue;
+}
+
+document.getElementById('enternamelog').addEventListener('input', updateUsername);
+var testp = updateUsername();
+
+
+const hrefofGoToProfilee = document.getElementById("GoToProfilee");
+hrefofGoToProfilee.addEventListener("click", function() {
+
+        window.location.href = '/user/' + testp;
+ 
+});*/
+/*
+var usernameValue = ''; // Declared in the global scope
+
+function updateUsername() {
+    usernameValue = document.getElementById('enternamelog').value;
+}
+var testp =updateUsername();
+document.getElementById('enternamelog').addEventListener('input', updateUsername);
+console.log(testp);
+const hrefofGoToProfilee = document.getElementById("GoToProfilee");
+hrefofGoToProfilee.addEventListener("click", function() {
+    
+
+    window.location.href = '/user/' + testp;
+
+});
+*/
+
+/*
+var usernameValue = ''; // Declared in the global scope
+
+function updateUsername() {
+    var ttt = '';
+    usernameValue = document.getElementById('enternamelog').value;
+    ttt = usernameValue;
+    console.log(ttt);
+}
+
+document.getElementById('enternamelog').addEventListener('input', function() {
+    updateUsername();
+    });
+
+
+const hrefofGoToProfilee = document.getElementById("GoToProfilee");
+hrefofGoToProfilee.addEventListener("click", function() {
+             var testb = updateUsername();
+    
+            console.log(testb);
+            window.location.href = '/user/' + 'ege';
+ 
+    });
+
+
+*/
+
+/*
+var usernameValue = ''; // Declared in the global scope
+
+function updateUsername() {
+    usernameValue = document.getElementById('enternamelog').value;
+    console.log("Inside the function: " + usernameValue);
+   
+}
+console.log("Outside the function: " + usernameValue);
+
+document.getElementById('enternamelog').addEventListener('input', updateUsername);
+
+const hrefofGoToProfilee = document.getElementById("GoToProfilee");
+hrefofGoToProfilee.addEventListener("click", function() {
+  
+
+ 
+      window.location.href = '/user/' + enterednameonlog;
+
+});
+
+*/
+//let zzsubmitbuttononlog = document.getElementById("submitbuttononlog"); 
+/*
+var usernameee = '';
+function getInputValueofLog() {
+    usernameee = document.getElementById('enternamelog').value;
+    
+    
+    
+   
+}*/
+//var testtwo = getInputValueofLog(); 
+/*
+zzsubmitbuttononlog.addEventListener("click", function(){
+    testconst = getValueoflog();
+    })
+*/
+
+
+
+
+/*
+    const usernameInput = document.getElementById("enternamelog");
+    const zzsubmitbuttononlog = document.getElementById("submitbuttononlog");
+
+
+
+    let enterednameonlog = '';
+  
+const hrefofGoToProfilee = document.getElementById("GoToProfilee");
+    usernameInput.oninput = function usernameinputfunct() {
+        
+        enterednameonlog = this.value;
+        return enterednameonlog;
+        
+    };
+getfromfunc = usernameinputfunct();
+console.log(getfromfunc);
+console.log('it is passed one above');
+zzsubmitbuttononlog.addEventListener("click", function() {
+        someAction(enterednameonlog);
+        console.log('Value from submit button click:', enterednameonlog); 
+        
+    });
+
+    function someAction(value) {
+        console.log('someaction value ',value);
+}
+    
+    hrefofGoToProfilee.addEventListener("click", function() {
+  
+    console.log('Value from GoToProfilee click:', enterednameonlog);
+   
+        window.location.href = '/user/' + enterednameonlog;
+  
+});
+*/
+
+
+        let myval ='';
+        let myval2 ='';
+        let myval3 ='';
+        let myval4 ='';
+        let myval5 ='';
+        let myval6 ='';
+        let myval7='';
+        let myval8='';
+        let myval9 ='';
+        let myval10 ='';
+        let myval11 = '';
+
+        passwordonregister.oninput = showValue7;
+        passwordagainonregister.oninput = showValue8;
+        male.onclick = showValue9;
+        female.onclick = showValue10;
+      
+       
+        let submitbuttononregister25 = document.getElementById("submitbuttononregister");
+    
+
+     
+   
+         
+           function showValue7(){
+             
+          
+             myval7 = this.value;
+          
+             submitbuttononregister25.addEventListener('click', function(){
+               
+               console.log(myval7);
+           });
+   
+           }
+   
+           function showValue8(){
+             
+          
+             myval8 = this.value;
+          
+             submitbuttononregister25.addEventListener('click', function(){
+               
+               console.log(myval8);
+           });
+   
+           }
+
+           function showValue9(){
+             
+          
+             myval9 = this.value;
+          
+             submitbuttononregister25.addEventListener('click', function(){
+               
+               console.log(myval9);
+           });
+   
+           }
+           function showValue10(){
+             
+          
+             myval10 = this.value;
+          
+             submitbuttononregister25.addEventListener('click', function(){
+               
+               console.log(myval10);
+           });
+        }
+
+
+
+
+        const namee = document.getElementById("nameonregister"); 
+
+        const surnamee = document.getElementById("surnameonregister");
+
+        const dayy = document.getElementById("day");
+        const monthh = document.getElementById("month");
+        const yearr = document.getElementById("year");
+        const gmale = document.getElementById("male");
+        const fmale = document.getElementById("female");
+        const emaill = document.getElementById("emailonregister");
+          
+
+        const passwordd = document.getElementById("passwordonregister");
+        const passwordd2 = document.getElementById("passwordagainonregister");
+
+
+//nameonregister, surnameonregister,day ,month ,year ,male ,female,emailonregister ,passwordonregister ,passwordagainonregister 
+
+/*
+Credentialss = new Credentialssa({name : "Ege23",
+surname:"Gurel",
+email:"ege@ege",
+age:28,
+gender:'male'}) 
+Credentialss.save();*/
+
+        var listenregister = document.getElementById("b");
+        var myregisterpage = document.getElementById("registerr");
+        var foruserpage2 = document.getElementById("userpage2");
+        var forlogpage = document.getElementsByClassName("logpage")[0]; 
+        var forlogpage2 =  document.querySelector(".logpage");
+        var formainpagereturn = document.getElementById("mainpagereturn");
+        var forcontainer =document.getElementById("container");
+        var forexit12 = document.getElementById("exit12");
+        var forregisteringuserform = document.getElementById("registeringuserform");
+        var forhreftomainmenu = document.getElementById("hreftomainmenu");
+        var forb = document.getElementById("b");
+        var forgottenpass = document.getElementById("a");
+        var myprofilebutton = document.getElementById("my-profile-button");
+
+        forgottenpass.addEventListener("click", function(){
+            recoverpasswordiframe.style.visibility ="visible";
+            mainpagebodyid.style.visibility="hidden";
+            if(recoverpasswordiframe.style.visibility =="visible"){
+                forlogpage.style.visibility = "hidden";
+                forexit12.style.visibility="hidden";}})
+            
+
+
+        
+        listenregister.addEventListener("click", function(){
+            myregisterpage.style.display = "grid";
+        });
+        var loginbutton = document.getElementById("Login"); 
+        loginbutton.addEventListener("click", function(){
+            forlogpage.style.visibility="visible";
+            forcontainer.style.opacity=0.3;
+            forlogpage2.style.opacity=1;    
+            forexit12.style.visibility="visible";
+            
+           
+        } );
+        forexit12.addEventListener("click",function(){
+            forexit12.style.visibility="hidden";
+            forlogpage.style.visibility="hidden";
+            forcontainer.style.visibility="visible";
+            forcontainer.style.opacity="1";
+
+        })
+        forb.addEventListener("click", function(){
+            forregisteringuserform.style.visibility="visible";
+            forcontainer.style.opacity=0.3;
+            forlogpage.style.visibility="hidden";
+            forexit12.style.visibility="hidden";
+
+
+        })
+        forhreftomainmenu.addEventListener("click", function(){
+            forregisteringuserform.style.visibility="hidden";
+            forcontainer.style.opacity=1;
+            forcontainer.style.visibility="visible";
+
+
+
+        })
+
+        const password = document.getElementById('passwordonregister');
+        const passwordConfirm = document.getElementById('passwordagainonregister');
+
+        function validatePassword() {
+            if (password.value !== passwordConfirm.value) {
+            passwordConfirm.setCustomValidity("Passwords do not match");
+            } else {
+            passwordConfirm.setCustomValidity("");
+            }
+        }
+
+        password.addEventListener('input', validatePassword);
+        passwordConfirm.addEventListener('input', validatePassword);
+
+
+        const idoff = document.getElementById("submitbuttononregister");
+    idoff.addEventListener("click", function validateForm() {
+        
+             
+            var maleRadio = document.getElementById("male");
+            var femaleRadio = document.getElementById("female");
+            
+        
+            if (!(maleRadio.checked || femaleRadio.checked)) {
+                
+                event.preventDefault();
+                return false;
+            }
+
+        
+          
+        
+            })
+
+            socketv.addEventListener('message', function(event) {
+                const data = JSON.parse(event.data);
+    if (data.type === 'alertpass') {
+       alert(data.message);
+}});
+       
+
+
+
+
+socketv.addEventListener('message', function(event) {
+                const data = JSON.parse(event.data);
+    if (data.type === 'questionroute') {
+       alert(data.message);
+       triggertheaxios();
+}});
+
+const urlsss = "https://virtualbiochemistry.com/routeofaskedquestionsonmainpage2";
+
+function triggertheaxios(){
+    axios.post(urlsss)
+    .then(function (response) {
+        console.log('Route is triggered');
+        
+    })
+    .catch(function (error) {
+        console.error(error);
+        
+    });
+}
+
+
+  
+            socketv.addEventListener('message', function(event) {
+                const data = JSON.parse(event.data);
+    if (data.type === 'alert') {
+       alert(data.message);
+}});
+
+
+            if (data.type === 'jsonFile') {
+        // Assuming 'content' is the property holding the JSON file content
+        const jsonFileContent = data.content;
+        
+        // Process the JSON file content as needed
+        console.log('Received JSON file:', jsonFileContent);
+    } else if (data.type === 'alert') {
+        // Handle other types of messages, for example, showing an alert
+        alert(data.message);
+    }
+
+
+
+            /*
+            socketv.addEventListener('message',function(event) {
+    const data = JSON.parse(event.data);
+    if (data.type === 'alert') {
+       alert(data.message);
+    }
+
+});
+*/
+//});
+
+    console.log('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW');
+       
+    </script>
+    <script src="apijs.js" ></script>
+    <script src="jsofnewformat.js"></script>
+   
+   
+</body>
+</html>

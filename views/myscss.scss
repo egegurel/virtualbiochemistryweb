@@ -1,0 +1,20 @@
+@mixin gradient-striped($color: rgba($white, .15), $angle: 45deg) {
+    background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+  }
+  .entrance{
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0.5) 0%, 
+        rgba(0, 0, 0, 0.5) 50%, 
+        rgb(118, 4, 39, 0.5) 100%);
+    position:absolute;
+    text-align: center;
+    display:grid;
+    top:112px;
+    margin: 0px;
+    
+    font-size: 60px;
+    text-shadow: 0 0 10px blue;
+    @include gradient-striped(rgba(255, 255, 255, 0.15), 45deg);
+    animation: color-flip 3s linear infinite;
+    
+}

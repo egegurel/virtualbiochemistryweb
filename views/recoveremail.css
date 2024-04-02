@@ -1,0 +1,113 @@
+body{
+background-image: url('backgroundforgetpass.jpg');
+z-index: 9000;
+
+}
+
+#enterrecovermail{
+    position: absolute;
+    top: 55px;
+    height: 30px;
+    width: 250px;
+}
+
+  
+#h1recover{
+    position: absolute;
+    top:300px;
+    left: 300px;
+    color: white;
+    font-size: 50px;
+    text-decoration: underline;
+}
+#submitbuttononrecoverpass{
+    position: absolute;
+    left: 270px;
+    top:50px;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+#parentforgetpassworddiv{
+    height: 200px;
+    width: 500px;
+    border-style: solid;
+    
+   border-color: white;
+    border-width: 5px 5px 5px 5px;
+    position: absolute;
+    top: 380px;
+    z-index: 3000;
+    left: 690px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#forgetpassworddiv{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    border-style: solid;
+    height: 160px;
+    width: 460px;
+   border-color: white;
+    overflow: hidden;
+   border-width: 5px 5px 5px 5px;
+   z-index: 6000;
+   background: linear-gradient(to right,green,blue)
+
+}
+
+
+  
+
+  .rotating-border{
+    position: relative;
+    content: '';
+    padding: 10px;
+    height: 40px;
+    width: 900px;
+    position: absolute;
+    top: 75px; /* Adjust these values based on border size */
+    left: 235px;
+    right: -5px;
+    bottom: -5px;
+    z-index: 1000;
+     /* Your desired border */
+    background-color: turquoise;
+    border-radius: 10px; /* If you want rounded corners */
+    animation: rotate 3s linear infinite;
+    transform-origin: left center;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  #headback{
+    right: 0px;
+    top:50px;
+    position: absolute;
+    text-decoration: none;
+    font-weight: bolder;
+    transition: background-color 1.5s ease; 
+  }
+  #headback a{
+    text-decoration: none;
+    
+  }
+  #headback:hover{
+    color:black;
+    background-color: yellow;
+    text-decoration: none;
+  }
+  a{
+    text-decoration: none;
+    outline: none;
+  }

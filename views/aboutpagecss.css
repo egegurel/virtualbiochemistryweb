@@ -1,0 +1,16 @@
+#container{
+    color: blue;
+    background-color: lightgray;
+    padding: 20px; 
+    margin: 20px; 
+    font-family: Arial, Helvetica, sans-serif; 
+}
+p{
+    color: blue;
+}
+h1{
+    color: green;
+}
+a:hover{
+    background-color: aqua;
+}

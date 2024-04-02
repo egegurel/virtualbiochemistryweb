@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Gürel Lab Result Consultation</title>
+    <link rel="stylesheet" type="text/css" href="cssofnewformat.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js" integrity="sha512-zoJXRvW2gC8Z0Xo3lBbao5+AS3g6YWr5ztKqaicua11xHo+AvE1b0lT9ODgrHTmNUxeCw0Ry4BGRYZfXu70weg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+
+    <h1 id="welcomeuser">Welcome  <%= name %></h1>
+    
+    <div id="userpage2">
+
+        <div class="topside">
+            
+        </div>
+        <div class="backmainmenu">
+            <a id="mainpagereturn">Return to Main Page</a>
+            
+        </div>
+        <button id="LogoutLogout2" name="LogoutLogout2">Logout</button>
+        <div class="topdown">
+            <ul class="topdownul">
+                <button id="profilebut">Edit Your Profile</button>
+                <button id="enquiryid">Send an enquiry</button>
+                <button id="resultsid">Your results would be here!</button>
+            </ul>
+        </div>
+        <div class="profilephoto">
+            
+        </div>
+        <img id="profilephotoimgid" name="profilephotoimgid" src="<%= imgsourceloadedforprofile  %>" width="350" height="350" onerror="this.style.display='none';"  alt="Profile Image">
+        <form action="uploadingphotoroute" name="uploadingphotoname" id="uploadingphotoname" enctype="multipart/form-data" method="POST">
+            <div class="uploadinput">
+                <label for="uploadphoto"> Choose a photo </label>
+                <input type="file" id="uploadphoto" name="myFile">
+                <button id="submitbuttonofuploadingphoto" name="submitbuttonofuploadingphoto" onclick="this.onsubmitted()" type="submit">Load your photo</button>
+            </div>
+        </form>
+        <form action="editingprofileroute" name="editingprofilename" id="editingprofilename"  method="POST">
+            <div class="editprofile">
+                <h3>Edit your name</h3>
+                <input type="text" id="nameinput" name="nameinput" placeholder="">
+                <h3>Edit your surname</h3>
+                <input type="text" id="surnameinput" name="surnameinput" placeholder="">
+                <h3>Edit your e-mail</h3>
+
+                <input type="email" id="emailinput" name="emailinput" placeholder="">
+                <h3>Edit the day</h3>
+
+                
+                <input type="number" id="day2" name="day2" min="1" max="31" value="">
+           
+                <h3>Edit the month</h3>
+                <input type="number" id="month2" name="month2" min="1" max="12" value="">
+         
+                <h3>Edit the year</h3>
+               
+                <input type="number" id="year2" name="year2" min="1900" max="2099" value="">
+
+                <h3>Change your password</h3> 
+                <input type="password" id="passwordinput" name="passwordinput" placeholder="">
+                <h3>Re-Enter password</h3> 
+                <input type="password" id="passwordinput2" name="passwordinput2" placeholder="">
+                <h3>Your Gender</h3>
+                <div class="radiocontainer">
+                    <label for="male1  ">Male</label>
+                        <input type="radio" id="male1" name="gender" value="male">
+                    <br>
+                    <hr>
+                    <label for="female1">Female</label>
+                    <input type="radio" id="female1" name="gender" value="female">
+
+                </div>
+                <button id="updatingprofilebutton" name="updatingprofilebutton" type="submit">Update Your Profile!</button>
+            </div>
+       </form>
+       <form action="routeofenquiry" id="formidofrouteofenquiry" name="formidofrouteofenquiry" enctype="multipart/form-data" method="POST">
+        <div class="startenquirygui">
+            <h1 id="note">Note: In order to take accurately comments and answers to your questions, you have to enter your age, weight, gender etc. </h2>
+
+            <h1 id="h1ofenq">Attention before sending enquiry to doctor!</h1>
+            <hr>
+            <h2 id="h2ofenq">Before initiating an enquiry, please make sure you mentioned some important informations about your situation. </h2>
+            <h2 id="h2ofaenq">Those are your drugs currently you using or used until near past, your age, your weight, maybe other informations that you think might be useful, dietary if you doing and some small brief explanation about your lifestyle.
+                Because all of them might effect the comments of doctor.
+                
+            </h2>
+            <br>
+            <br>
+            <br>     
+            <label for="inquiry" id="textoninquiry">Your Inquiry:</label>
+            <textarea id="inquiry" name="inquiry" rows="4" cols="50"></textarea>
+            <br>
+            <div>
+                <img src="attachment.png" id="attachmenticon" height="250" width="250">
+            </div>
+            <label for="sendurenquiry" id="docenqlabel">Choose Lab Result Document Upon Your Enquiry </label>
+            <input type="file" id="sendurenquiry" name="myyFile">
+            <button id="buttonofstartingenquiry" name="buttonofstartingenquiry" type="submit"> Submit enquiry!</button>
+
+        </div> 
+    </form>
+        <div class="openenquiry">
+           
+        </div>
+        <div id="yourresultsid" name="yourresultsid" class="yourresults">
+            <div id="paragraphforanswerfromdoc" name="paragraphforanswerfromdoc">
+                <h1>Dear, <%= indname %>, this is your consultative letter !</h1>
+                <% if (answerhere) { %>
+                    <p id="replycameid" name="replycameid"><%= answerhere %></p>
+                  <% } else { %>
+                    <p>There is not submitted any enquiry to doctor!</p>
+                  <% } %>   
+            </div>
+            <h4 id="defofchaticon" name="defofchaticon">For paid customers, you can ask your further questions <br> through this channel in chat interface. </h4>
+            <button id="buttonofchaticon" name="buttonofchaticon">
+                <img src="chat-icon.png" height="75" width="75">
+            </button>
+        </div>    
+  
+
+    </div>
+
+    <script src="https://www.paytr.com/js/iframeResizer.min.js"></script>
+    <div id="parentdivofpayment" name="parentdivofpayment">
+        <div id="childdivofpayment" name="childdivofpayment"> <button id="imgidofpayment2" name="imgidofpayment2"><img id="imgidofpayment" name="imgidofpayment" src="exit-icon-payment.png" height="30" width="30" > </button> </div>
+    <iframe src="" id="paytriframe" name="paytriframe" frameborder="0"
+    scrolling="yes" style="height:800px; min-height: 800px; width:1100px; top:1200px; right:400px;transform: scale(0.8); margin-top:0px; margin-left: 0px;"></iframe>
+        
+    </div>
+    <div id="livechattingwithdoc" name="livechattingwithdoc">
+        <button id="closebuttonofsendingmessage2" name="closebuttonofsendingmessage2">
+            <img src="exitbuttonjpg.jpg" id="idclosebuttonofsendingmessage2" name="idclosebuttonofsendingmessage2" height="40" width="40">
+        </button>
+        <input type="text" id="messageInputChat" name="messageInputChat" placeholder="Type a message">
+        <form action="routeofchatchat" id="idofchatchat" name="idofchatchat" method="GET">
+            <ul id="messagesrespondedbyserver"name="messagesrespondedbyserver">
+
+            </ul>
+
+
+
+        </form>
+
+        <button id="mybuttonsendingmessage" name="mybuttonsendingmessage" onclick="sendMessageMessage()">
+              <img src="sendiconpng.png" id="sendiconformessagingdiv" name="sendiconformessagingdiv" height="75" width="75">
+        </button>
+
+
+    </div> 
+   
+    
+
+ 
+        
+        
+      
+
+
+
+
+
+    <script>     
+// In the parent page
+
+
+const socketv = new WebSocket('wss://virtualbiochemistry.com:443');
+
+
+
+
+
+//var varpaytriframe123 = document.getElementById("paytriframe123");
+
+
+/*<iframe src="https://www.paytr.com/odeme/guvenli/" id="paytriframe" frameborder="0"
+scrolling="yes" style="height:800px; min-height: 800px; visibility:hidden; width:1100px; position:absolute; top:1200px; right:400px;transform: scale(0.8);"></iframe>*/
+
+//const socketv = new WebSocket('wss://virtualbiochemistry.com:443');
+
+//const socketv = new WebSocket('wss://virtualbiochemistry.com:443');
+
+
+socketv.onopen = function(event) {
+  console.log("WebSocket connection successfully opened", event);
+  // Now it's safe to send messages because the connection is open
+};
+function triggerRequest(){
+    if (socketv.readyState === WebSocket.OPEN) {
+    socketv.send('Trigger');
+  } else {
+    // If the WebSocket is not open, you might want to handle this case
+    console.log("WebSocket is not open. Cannot send message. ReadyState: " + socketv.readyState);
+  }
+}
+//__________-
+socketv.onopen = function(event) {
+    console.log("WebSocket connection opened", event);
+};
+/*
+socketv.addEventListener('message', function(event) {
+    
+                const data = JSON.parse(event.data);
+            
+    if (data.type === 'channelofpaytr') {
+            console.log('Channel of paytr is readen');
+            console.log(data.message);
+            console.log(JSON.stringify(data.message, null, 2));
+
+            var iframe = document.getElementById('paytriframe');
+            
+            // Update the src attribute of the iframe
+            iframe.src = `https://www.paytr.com/odeme/guvenli/${data.message}`;
+            iframe.style.visibility = "visible";
+
+
+}});*/
+
+
+
+
+
+
+const socket = io('https://virtualbiochemistry.com');
+
+    
+
+
+/*
+socket.on('channelofpaytr', (link) =>{
+    console.log(link);
+    console.log('This is console of socket ');
+    var thisvarispaytr = link.message;
+              // Find the iframe by its ID
+              var iframe = document.getElementById('paytriframe');
+              iframe.id = "paytriframe";
+              // Update the src attribute of the iframe
+              iframe.src = `https://www.paytr.com/odeme/guvenli/${thisvarispaytr}`;
+} )*/
+
+
+const varLogoutLogout2 = document.getElementById("LogoutLogout2");
+varLogoutLogout2.addEventListener("click", function(){
+    document.cookie = "userLoggedData=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    history.replaceState(null, null, '/');
+    window.location.href = 'newformat.html';
+})
+
+socketv.addEventListener('message', function(event) {
+                const data = JSON.parse(event.data);
+    if (data.type === 'querysent') {
+       alert('Your enquiry sent successfully and we will return you within 3 days! For your further questions, you can use the online chat interface that opens after payment. Until then, have a nice day, have a healthy day!');
+       window.location.reload();
+}});
+
+var varbuttonofstartingenquiry = document.getElementById("buttonofstartingenquiry");
+
+var varpaytriframe = document.getElementById("paytriframe");
+var varformidofrouteofenquiry = document.getElementById("formidofrouteofenquiry");
+
+
+varbuttonofstartingenquiry.addEventListener("click",  function(){
+    
+    event.preventDefault();
+   
+    axios.post('https://virtualbiochemistry.com/paymentinterface', {
+        // Your payload here, if needed
+    })
+    .then(response => {
+        // Handle response
+      
+        console.log('Success:');
+       
+        myiFrameFunc();
+//varpaytriframe123.style.visibility = "visible";
+        // If you need to take action based on the response, do it here
+        function checkPaymentStatus() {
+  
+  const paymentStatusCheckInterval = setInterval(() => {
+
+    axios.post('https://virtualbiochemistry.com/finalstateofbill2').then(response=>{
+                const data = response.data;
+                if(data.success){
+                    document.getElementById("formidofrouteofenquiry").submit();
+                    return clearInterval(paymentStatusCheckInterval);
+                }
+                else if(data.failfail){
+                   
+                    alert('Your payment is not succeed, try another a payment method please!');
+                    return checkPaymentStatus();
+                }
+            })
+         
+                 
+              
+  }, 5000); 
+}
+checkPaymentStatus();
+
+
+
+
+    })
+ 
+
+
+
+
+});
+
+function myiFrameFunc(){
+    console.log('myiFrameFunc is ran');
+    socketv.addEventListener('message', function(event) {
+    
+    const data = JSON.parse(event.data);
+
+if (data.type === 'channelofpaytr') {
+console.log('Channel of paytr is readen');
+console.log(data.message);
+console.log(JSON.stringify(data.message, null, 2));
+
+var iframe = document.getElementById('paytriframe');
+var varparentdivofpayment = document.getElementById("parentdivofpayment");
+// Update the src attribute of the iframe
+iframe.src = `https://www.paytr.com/odeme/guvenli/${data.message}`;
+iframe.style.visibility = "visible";
+varparentdivofpayment.style.visibility = "visible";
+
+}});
+}
+
+var iframe2 = document.getElementById('paytriframe');
+
+var vartwoparentdivofpayment = document.getElementById("parentdivofpayment");
+varimgidofpayment2 = document.getElementById("imgidofpayment2");
+varimgidofpayment2.addEventListener("click", function(){
+    if(vartwoparentdivofpayment.style.visibility === "visible"){
+        vartwoparentdivofpayment.style.visibility = "hidden";
+        iframe2.style.visibility = "hidden";
+    }
+})
+
+/*
+varbuttonofstartingenquiry.addEventListener("click", function(event){
+    event.preventDefault(); 
+    varpaytriframe.style.visibility = "visible";
+    checkPaymentStatus().then(success => {
+        if (success) {
+            console.log("Payment successful, submitting form.");
+            document.getElementById("formidofrouteofenquiry").submit(); // Submit form on success
+        } else {
+            console.log("Payment pending or failed.");
+            document.getElementById("formidofrouteofenquiry").submit();
+            // Handle failed payment here
+        }
+    }).catch(error => {
+        console.error("Error during payment status check:", error);
+    });
+});
+
+function checkPaymentStatus() {
+    return new Promise((resolve, reject) => {
+        // Simulate payment status check
+        fetch('/finalstateofbill', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({  payload })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            reject(error);
+        });
+    });
+}
+*/
+
+
+
+
+
+
+
+
+
+var variablelivechattingwithdoc = document.getElementById("livechattingwithdoc");
+
+const varbuttonofchaticon = document.getElementById("buttonofchaticon");
+varbuttonofchaticon.addEventListener("click", function(){
+    if(variablelivechattingwithdoc.style.visibility==="hidden"){
+
+        variablelivechattingwithdoc.style.visibility = "visible";
+}else{
+    variablelivechattingwithdoc.style.visibility="hidden";
+}
+})
+const varmessagesrespondedbyserver = document.getElementById("messagesrespondedbyserver");
+
+socketv.addEventListener('message', function(event) {
+                const data = JSON.parse(event.data);
+    if (data.type === 'yesforenquiry') {
+        varbuttonofchaticon.style.visibility = "visible";
+       
+}});
+
+
+
+socketv.addEventListener('message', function(event) {
+                const data = JSON.parse(event.data);
+    if (data.type === 'yesforenquiry23') {
+        if(varbuttonofchaticon.style.visibility === "hidden"){
+        varbuttonofchaticon.style.visibility = "visible";
+        }
+}});
+
+
+
+
+fetch('/user/:name/routeofchatchat').then(response => response.json()).then(data => {
+    console.log('Right above of forEach');
+
+
+    data.forEach(edata=>{
+        console.log('Right BELOW of forEAch');
+        edata.split('::::');
+        
+        if(edata.startsWith('D')){
+            let originalString = edata;
+            let stringToRemove = "D::::";
+            let newString = originalString.replace(stringToRemove, "");
+            const lis2 = document.createElement("li");
+            lis2.textContent = newString;
+            lis2.style.textAlign = 'right';
+          lis2.style.background = "green";
+            lis2.style.fontWeight = "bolder";
+            lis2.style.maxWidth = "600px";
+            lis2.style.listStyleType = "none";
+            lis2.style.wordWrap = "break-word"; 
+
+
+
+
+            varmessagesrespondedbyserver.appendChild(lis2);
+  
+
+        }
+        if(edata.startsWith('U')){
+            let originalString = edata;
+            let stringToRemove = "U::::";
+            let newString = originalString.replace(stringToRemove, "");
+            const lis3 = document.createElement("li");
+            lis3.textContent = newString;
+            lis3.style.right = '0px'; 
+            lis3.style.background = "purple";
+            lis3.style.maxWidth = "600px";
+            lis3.style.listStyleType = "none";
+            lis3.style.fontWeight = "bolder";
+            lis3.style.wordWrap = "break-word"; 
+
+            varmessagesrespondedbyserver.appendChild(lis3);
+
+
+        }
+    else{
+        console.log('msgs doesnt took');
+    }
+    
+    })
+}).catch(error => console.error('Fetch error:', error))
+
+
+
+
+
+console.log('below of SOCKET');
+const nameofuser = "<%= usernamep %>";
+console.log("name of user in embedded script side",nameofuser);
+
+let councount2 = 0;
+async function sendMessageMessage() {
+    const messageInput = document.getElementById('messageInputChat');
+    const message = messageInput.value;
+    const nameofuser333 = nameofuser;
+    councount2 = 1;
+    await funcofsendingchatfromuser(nameofuser333,message,councount2);
+    socket.emit('chat-message',message)
+    socket.emit('chat-message98', message)
+    messageInput.value = "";
+}
+async function funcofsendingchatfromuser(nameofuser2,message2,councount){
+    socket.emit('connection',{nameofuser2,message2})
+    const nameofuseronchat2 = nameofuser2;
+    const messagecontentofchat2 = message2;
+    const councount2 = councount;
+  
+    await fetch('/myfetchapiforchat2/bringthechatofuser', {
+        method:'POST',
+        headers:{'Content-Type':'application/json',},
+        body : JSON.stringify({nameofuseronchat2,messagecontentofchat2, councount2})
+    }).then(response=>{response.json()}).catch(error => console.error('Fetch error:', error))
+  // councount = 0;
+}
+
+
+
+
+socket.on('chat-message', (msg)=>{
+    console.log('THIS IS MESSAGE ON CHAT-MSG', msg);
+        const lis5 = document.createElement("li");
+        lis5.textContent = msg;
+          lis5.style.background = "purple";
+            lis5.style.fontWeight = "bolder";
+            lis5.style.maxWidth = "600px";
+            lis5.style.listStyleType = "none";
+            lis5.style.wordWrap = "break-word"; 
+            varmessagesrespondedbyserver.appendChild(lis5);
+    })
+    socket.on('chat-message96', (msg)=>{
+    console.log('THIS IS MESSAGE ON CHAT-MSG', msg);
+        const lis8 = document.createElement("li");
+        lis8.textContent = msg;
+          lis8.style.background = "green";
+            lis8.style.fontWeight = "bolder";
+            lis8.style.textAlign = "right";
+            lis8.style.maxWidth = "600px";
+            lis8.style.listStyleType = "none";
+            lis8.style.wordWrap = "break-word"; 
+            varmessagesrespondedbyserver.appendChild(lis8);
+    })
+    socket.on('chat-message2', (message)=>{
+
+        const lis4 = document.createElement("li");
+        lis4.textContent = message;
+        lis4.style.textAlign = 'right';
+          lis4.style.background = "green";
+            lis4.style.fontWeight = "bolder";
+            lis4.style.maxWidth = "600px";
+            lis4.style.listStyleType = "none";
+            lis4.style.wordWrap = "break-word"; 
+
+
+
+
+            varmessagesrespondedbyserver.appendChild(lis4);
+  
+});
+
+
+
+/*
+
+socket.on('response', (response) => {
+    const messagesDivmessages = document.getElementById('messagesrespondedbyserver');
+    messagesDivmessages.innerHTML += `<p>${response}</p>`;
+});
+*/
+
+var urlsss = "https://virtualbiochemistry.com/checkenquiryornot";
+
+    function getCookie(name) {
+        let cookies = document.cookie; // Get all cookies in a string
+        let cookieArray = cookies.split(';'); // Split it into an array based on ';' delimiter
+        let cookiesObj = {};
+        for(let i = 0; i < cookieArray.length; i++) {
+            console.log(cookieArray);
+            let cookiePair = cookieArray[i].split('='); // Split each "key=value" pair
+        console.log('cookiepair[i]',cookiePair[i]);
+            if(name == cookiePair[0].trim()) {
+                let decodedCookieValue = decodeURIComponent(cookiePair[1]);
+    
+                let userObject = JSON.parse(decodedCookieValue); 
+                
+                let userobject = userObject.username;
+                console.log('userrrrrrrrrrrr', userobject);
+                axiosposting(userobject);
+
+            }
+        }
+        
+      
+      
+    
+        return null;
+    }
+  
+function axiosposting(userobject){
+    axios.post(urlsss, userobject,{
+        headers:{
+            'Content-Type':'text/plain'
+        }
+    })
+    .then(function (response) {
+        // Handle success
+        alert('Data posted successfully:', response.data);
+    })
+    .catch(function (error) {
+        // Handle error
+        alert('Error posting data:');
+    });
+
+}
+
+
+
+
+
+
+
+
+
+var variableclosebuttonofsendingmessage2 = document.getElementById("closebuttonofsendingmessage2");
+variableclosebuttonofsendingmessage2.addEventListener("click", function(){
+   
+    variablelivechattingwithdoc.style.visibility = "hidden";
+})
+
+
+
+        var buttonedprof = document.getElementById("profilebut");
+        var buttonedprof2 = document.getElementById("profilebut");
+        var editprofile1 = document.getElementsByClassName("editprofile")[0];
+        var computedStyle = window.getComputedStyle(editprofile1);
+        var enquirypage = document.getElementsByClassName("startenquirygui")[0];
+        var computedStyle2 = window.getComputedStyle(enquirypage);
+        var buttonenquirypage = document.getElementById("enquiryid");
+        var buttonresults = document.getElementById("resultsid");
+        var resultspage1 = document.getElementsByClassName("yourresults")[0];
+        var computedStyle3 = window.getComputedStyle(resultspage1);
+        buttonresults.addEventListener("click", function(){
+            if(computedStyle3.display==="block"){
+                resultspage1.style.display="none";
+                variablelivechattingwithdoc.style.visibility = "hidden";
+            } else{
+                resultspage1.style.display="block";
+        
+                enquirypage.style.display="none";
+                editprofile1.style.display = "none";
+        
+        
+            }
+        });
+        
+        buttonedprof.addEventListener("click", function () {
+            if (computedStyle.display === "block") {
+                editprofile1.style.display = "none";
+                variablelivechattingwithdoc.style.visibility = "hidden";
+            } else {
+                editprofile1.style.display = "block";
+                enquirypage.style.display="none";
+                resultspage1.style.display="none";
+                
+                variablelivechattingwithdoc.style.visibility = "hidden";
+        
+        
+            }
+        });
+        const constofuploading = document.getElementById("uploadphoto");
+        const makevisiblephotosendbutton = document.getElementById("submitbuttonofuploadingphoto");
+        constofuploading.addEventListener("change", function(event){
+            const selectedfile = event.target.files[0];
+            if(selectedfile){
+                makevisiblephotosendbutton.style.visibility = "visible";
+            }
+        })
+        //___________
+    
+        const editingpasswordvalidation = document.getElementById("passwordinput");
+      const editingpasswordvalidation2 = document.getElementById("passwordinput2");
+
+      function ValidatePassEdit(){
+        if(editingpasswordvalidation.value !== editingpasswordvalidation2.value){
+            editingpasswordvalidation2.setCustomValidity("Passwords are not matched!");
+        }
+        else{editingpasswordvalidation2.setCustomValidity("");}
+      }
+      editingpasswordvalidation.addEventListener("input", ValidatePassEdit);
+      editingpasswordvalidation2.addEventListener("input", ValidatePassEdit);
+  //______________
+  mainpagereturn.addEventListener("click", function(){
+        window.location.href = "newformat.html?success=true";
+      })
+
+        buttonenquirypage.addEventListener("click", function(){
+            if(computedStyle2.display==="block"){
+                enquirypage.style.display="none";
+                variablelivechattingwithdoc.style.visibility = "hidden";
+            } else{
+                enquirypage.style.display="block";
+                editprofile1.style.display = "none";
+                resultspage1.style.display="none";
+                variablelivechattingwithdoc.style.visibility = "hidden";
+        
+        
+            }
+        });
+        formainpagereturn.addEventListener("click", function(){
+            foruserpage2.style.visibility="hidden";
+            forcontainer.style.visibility="visible";
+        });
+       
+
+        </script>
+        <script src="apijs.js"></script>
+       
+</body>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="aboutpagecss.css">
+</head>
+<body>
+    <div id="container" name="container">
+        <button id="buttoninreact" style="background-color: lightblue;
+        color: black;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        top: 30px;
+        right: 50px;
+        position:absolute" > 
+            <a href="newformat.html">
+             Back</a>
+             </button>
+        <h1>Who is Dr. Gurel?</h1>
+        <p>He is born in 17 March 1961 in Ankara within a middle class family, his wonder for nature and interest for biology was always </br>  
+            a passion for him since his childhood. He graduated from Izmir Ege University Faculty of Medicine in 1993. He completed his specialization in 2005 at the same university. </br>
+            He worked as a specialist in the field of biochemistry and still has been working since that time. He has got married and one child. He is still working actively with same passion of his childhood.<br/>
+            He decided to use his extensive experience gained from lab and skills at the digital platform as an online consultancy service and ordered to setup this web platform.</br>
+            His diplome, specialist document and his photo is below. 
+            
+            
+             </p>
+             <div id="documentsidofmed">
+
+
+             </div>
+
+
+              <div id="photoreact">
+
+              </div>
+              <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+              <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+            <script>
+
+                        const w = React.createElement;
+
+
+                        const APhoto = (props) => {
+                            return w('img', { src: props.src, alt: props.alt, style: { width: '700px', height: '700px', display: 'inline-block', marginBottom: '10px',margin:'30px' } });
+                        };
+
+
+                        class APhotos extends React.Component {
+                            render() {
+                                return w('div', {},
+                                    w(APhoto, { src: 'documentofuni1.jpg', alt: 'Photo of Diplome' }),
+                                    w(APhoto, { src: 'documentofuni2.jpg', alt: 'Photo of Doc' })
+                                );
+                            }
+                        }
+
+
+            ReactDOM.render(w(APhotos, {}), document.getElementById('documentsidofmed'));
+
+
+/////////
+                const e = React.createElement;
+
+                        class Photo extends React.Component {
+   
+                        render() {    
+                            
+                        const containerStyle = {
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '100vh', 
+                            width: '100%' 
+                        };
+
+
+                        return e('div', { 
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh', 
+            width: '100%' 
+          }
+        },
+        e('img', { 
+          src: this.props.src, 
+          alt: this.props.alt, 
+          style: { maxWidth: '700px', maxHeight: '700px', width: 'auto', height: 'auto' }
+        })
+      );
+    }
+  }
+
+                     
+                        ReactDOM.render(e(Photo, { src: 'kadirgurel.png', alt: 'Photo of Doctor'}), document.getElementById('photoreact'));
+            </script>
+              
+    </div>
+
+
+
+</body>
+</html>

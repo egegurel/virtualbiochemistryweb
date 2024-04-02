@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Gürel Lab Result Consultation-Admin Page</title>
+    <link rel="stylesheet" type="text/css" href="cssofnewformat.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+</head>
+<body id="bodyidofadminpage">
+
+
+   
+
+    <div id="upsectiondiv">
+        <h1 id="h1idadmin">Admin Page</h1>
+        <div id="upsectioncolumndiv">
+        
+                <input id="searchtabinadminpage" type="text" name="searchtabinadminpage" placeholder="Search a user, document or photograph by its username...">
+                <button id="searchButton" >Search</button>
+            
+            
+          
+          <button id="LogoutAdminButton" name="LogoutAdminButton">Logout from account</button>
+          <a  id="backmenuadminbutton" name="backmenuadminbutton" href="newformat.html">Return to Main Page</a>
+        
+         
+        </div>
+    </div>
+    <div id="sidesectiondiv">
+        <div id="sidesectionrowdiv">                
+                <button id="buttonidlistallusers" name="buttonidlistallusers">See All Users </button><br>              
+                <button name="buttonidreaded" id="buttonidreaded">Readed Documents</button>
+                <button name="buttonidnotreaded" id="buttonidnotreaded">Not Readed Documents</button>
+                <button  id="buttonidalldocuments" name="buttonidalldocuments" >Refunded Documents </button>
+                <button id="openchatwithusers" name="openchatwithusers">Chat with users</button>
+        </div>
+    </div>
+    <div id="displayingallusers" name="displayingallusers">
+        <h1 id="listingusers">List of All Users</h1>
+        <hr>
+        <ul id="usersList" name="usersList">
+
+          
+        </ul>
+        
+    </div>
+    <div id="displayinreadeddoc" name="displayinreadeddoc">
+        <h1 id="listingreadeddocs">All readed documents are here</h1>
+        <hr>
+        <ul id="ListofReadeds" name="ListofReadeds">
+
+        </ul>
+       
+    </div>
+    <div id="displayingalldocs" name="displayingalldocs">
+        <h1 id="listingalldocs">Refunded Cases by Admin</h1>
+        <hr>
+        <ul id="ListofRefundeds" name="ListofRefundeds">
+
+        </ul>
+    </div>
+    <div id="displayingallnotreadeddocs" name="displayingallnotreadeddocs">
+        <h1 id="listingallnotreadeddocs">Not readed documents</h1>
+        <hr>
+      
+        <ul id="ListofNotReaded" name="ListofNotReaded">
+
+        </ul>
+    </div>
+    <div id="displaythechatwithusers" name="displaythechatwithusers">
+        <h1 id="listingthechatwithusers">Chat with users</h1>
+        <hr>
+        <ul id="listtheusersforchat" name="listtheusersforchat">
+
+        </ul>
+        <ul id="messagesrespondedbyserver1"name="messagesrespondedbyserver1">
+    
+        </ul>
+        <div id="livechattingwithdoc2" name="livechattingwithdoc2">
+            <button id="closebuttonofsendingmessage" name="closebuttonofsendingmessage">
+                <img src="exitbuttonjpg.jpg" id="idclosebuttonofsendingmessage" name="idclosebuttonofsendingmessage" height="40" width="40">
+            </button>
+            <input type="text" id="messageInputChat2" name="messageInputChat2" placeholder="Type a message">
+            <div id="divformessagesrespondedbyserver2" name="messagesrespondedbyserver2">
+                <ul id="messagesrespondedbyserver2"name="messagesrespondedbyserver2">
+    
+                </ul>
+            </div>
+            <button id="mybuttonsendingmessage2" name="mybuttonsendingmessage2" onclick="sendMessageMessage2()">
+
+                <img src="sendiconpng2.png" id="sendiconformessagingdiv2" name="sendiconformessagingdiv2" height="75" width="75">
+                 
+            </button>
+        </div> 
+        <div id="idofseekingusername" name="idofseekingusername">
+
+        </div>
+    </div>
+    
+</body>
+<script>
+
+const socketv = new WebSocket('wss://virtualbiochemistry.com:443');
+const socket = io('https://virtualbiochemistry.com');
+
+const constidofseekingusername = document.getElementById("idofseekingusername");
+var inputValueOfSearch = '';
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('searchButton').addEventListener('click', function() {
+        constidofseekingusername.innerHTML = "";
+        inputValueOfSearch = document.getElementById('searchtabinadminpage').value;
+       console.log(inputValueOfSearch);
+       socket.emit('searchingusername', inputValueOfSearch);
+       inputValueOfSearch.value = '';
+
+    })
+});
+
+constidofseekingusername.style.visibility = "hidden";
+socketv.addEventListener('message', function(event) {
+                const data = JSON.parse(event.data);
+    if (data.type === 'openthediv') {
+        var styleofseekingusername = window.getComputedStyle(constidofseekingusername);
+        if(styleofseekingusername.visibility==="hidden"){
+        constidofseekingusername.style.setProperty('visibility', 'visible', 'important');
+        }
+        fetch('/usernameseek').then(response=>response.json()).then(user=>{
+         
+           const listedItems = document.createElement("li");
+            listedItems.textContent = `Username:${user.username}, Name:${user.name}, Surname: ${user.surname}, Age: ${user.day}/${user.month}/${user.year}, Gender:${user.gender}`;
+            const itsImg = document.createElement("img");
+            itsImg.src = user.enquiryimagepathfromdb;
+            listedItems.style.fontSize = "30px";
+            listedItems.style.fontWeight = "bolder";
+            listedItems.style.opacity = '1';
+            listedItems.style.color = "white";
+            itsImg.style.width = '800px';
+            itsImg.style.height = '800px';
+            itsImg.style.opacity = '1';
+            const writeEnquiry = document.createElement("li");
+            writeEnquiry.textContent = `${user.enquiryy}`;
+            writeEnquiry.style.fontSize = "20px";
+            writeEnquiry.style.fontWeight = "bolder";
+            writeEnquiry.style.color = "white";
+            writeEnquiry.style.opacity = '1';
+            const exitofseekingusername = document.createElement("button");
+            exitofseekingusername.textContent = "Close";
+            exitofseekingusername.style.width = "100px";
+            exitofseekingusername.style.height = "100px";
+            exitofseekingusername.style.position = "relative";
+            exitofseekingusername.style.top = "-100px";
+            exitofseekingusername.style.left = "1000px";
+            exitofseekingusername.style.cursor = "pointer";
+            exitofseekingusername.style.fontWeight = "bolder";
+            exitofseekingusername.style.borderRadius = "10px";
+            exitofseekingusername.style.backgroundColor = "red";
+            exitofseekingusername.style.opacity = '1';
+            exitofseekingusername.addEventListener("click", function(){
+                constidofseekingusername.style.visibility = "hidden";
+                exitofseekingusername.remove();
+                listedItems.remove();
+                itsImg.remove();
+                writeEnquiry.remove();
+            })
+            constidofseekingusername.appendChild(exitofseekingusername);
+            constidofseekingusername.appendChild(listedItems);
+            constidofseekingusername.appendChild(itsImg);
+            constidofseekingusername.appendChild(writeEnquiry);
+        }).catch(error=>{console.log(error)});
+}});
+
+
+      //  const socket = io('https://127.0.0.1:8443',{ rejectUnauthorized: false });
+
+        /*const socket = io('https://127.0.0.1:8443',{ rejectUnauthorized: false });
+ socket.on('connect',(sss)=>{
+    sss.emit('response',()  => {
+        console.log('QWEQEWQ');
+    }
+ )})
+ socket.on('disconnect', () => {
+    console.log('Disconnected from socket');
+});
+
+ 
+ }
+
+ socket.emit('custom-event',10,'hi');
+ 
+ socket.on('response', (response) => {
+     const messagesDivmessages = document.getElementById('messagesrespondedbyserver2');
+     document.getElementById("paragraphofresponse").style.backgroundColor = "blue";
+     messagesDivmessages.innerHTML += `<p id="paragraphofresponse">${response}</p>`;
+     console.log('You are in response of socket');
+    
+ });
+*/
+
+
+document.getElementById('LogoutAdminButton').addEventListener("click", function(){
+            document.cookie = "userLoggedData=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            history.replaceState(null, null, '/');
+            window.location.href = 'newformat.html';
+        })
+  
+
+  
+  const variableofreturningtoadmin = document.getElementById("returntoprofileforadmingbutton");
+  const varbackmenuadminbutton = document.getElementById("backmenuadminbutton");
+  const varclosebuttonofsendingmessage = document.getElementById("closebuttonofsendingmessage");
+  varclosebuttonofsendingmessage.addEventListener("click", function(){
+    if(dividoflivechattingwithdoc2.style.visibility==="visible"){
+        dividoflivechattingwithdoc2.style.visibility = "hidden";
+        
+    }
+  })
+  
+document.addEventListener("DOMContentLoaded", function(){
+
+   
+      
+        fetch('/fetchedAllNotReadedUsers/getTheirInfos')
+        .then(response =>
+        response.json())
+        .then(data => { 
+            const usersssList = document.getElementById("ListofNotReaded");
+            const readedusersssList = document.getElementById("ListofReadeds");
+            const usersssImages = document.getElementById("usersImages");
+            data.forEach(user=>{
+              if(user.enquiryisnotreaded){
+                const userContainer = document.createElement("div");
+                userContainer.style.display = "block";
+                const childUserContainer = document.createElement("div");
+               //.. childUserContainer.style.display = "inline-block";
+                
+               // const textforcheckbox = document.createElement("h5");
+               // textforcheckbox.textContent += "Readeds";
+               // userContainer.style.padding = "50px";
+                const checkboxforsendingtoreadeds = document.createElement("input");
+                checkboxforsendingtoreadeds.type = "checkbox";
+                checkboxforsendingtoreadeds.style.cursor = "pointer";
+                const checkboxforrefund = document.createElement("input");
+                checkboxforrefund.type = "checkbox";
+                checkboxforrefund.style.cursor = "pointer";
+            //    checkboxforrefund.style.position = "relative";
+                checkboxforrefund.style.width = "50px";
+                checkboxforrefund.style.height = "50px";
+                checkboxforrefund.style.top = "-300px";
+                checkboxforrefund.style.left = "1090px";
+                checkboxforrefund.style.visibility = "hidden";
+                checkboxforrefund.style.position = "relative";
+                const h5Elementcheckbox = document.createElement("h5");
+                h5Elementcheckbox.innerText = "Readeds";
+                const h5Elementcheckboxrefund = document.createElement("h5");
+                h5Elementcheckboxrefund.innerText = "Will be Refunded";
+                h5Elementcheckboxrefund.style.top = "-360px";
+                h5Elementcheckboxrefund.style.left = "1135px";
+                h5Elementcheckboxrefund.style.fontSize = "15px";
+                h5Elementcheckboxrefund.style.visibility = "hidden";
+                h5Elementcheckboxrefund.style.position = "relative";
+                h5Elementcheckbox.style.top = "-220px";
+                h5Elementcheckbox.style.fontSize = "15px";
+                h5Elementcheckbox.style.left = "1150px";
+                h5Elementcheckbox.style.visibility = "hidden";
+                h5Elementcheckbox.style.position = "relative";
+            //    userContainer.style.display = 'inline-block';
+                const listItems = document.createElement("li");
+                const buttonofsendingreply = document.createElement("button");
+                buttonofsendingreply.style.width = "80px";
+                buttonofsendingreply.style.height = "80px";
+               buttonofsendingreply.style.position = "relative";
+                //buttonofsendingreply.style.right = "50px";
+                buttonofsendingreply.style.top = "-700px";
+                buttonofsendingreply.style.left = "630px";
+                buttonofsendingreply.style.visibility = "hidden";
+                buttonofsendingreply.innerHTML = "Send Your Answer";
+                buttonofsendingreply.style.cursor = "pointer";
+                buttonofsendingreply.style.fontWeight = "bolder";
+                buttonofsendingreply.style.borderRadius = "10px";
+                const imgElement = document.createElement("img");
+                const imgElementofReply = document.createElement("img");
+                
+                imgElementofReply.style.alt ="Icon-for-replying";
+                imgElementofReply.style.margin = "40px";
+
+               imgElementofReply.style.position = "relative";
+                imgElementofReply.style.top = "-80px";
+                imgElementofReply.style.left = "70px";
+  
+          //      childUserContainer.style.alignItems = "center";
+                
+                const paragraphItems = document.createElement("p");
+
+                listItems.textContent = `Username:${user.username}, Name:${user.name}, Surname: ${user.surname}, Age: ${user.day}/${user.month}/${user.year}, Gender: ${user.gender} `;
+                if(user.enquiryy){
+                    
+                    const ulX = document.createElement('ul');
+
+                    user.enquiryy.forEach(enquiry => {
+                        const lix = document.createElement('li');
+                        lix.textContent = enquiry;
+                       
+                        ulX.appendChild(lix);
+                       
+                    });
+             //       paragraphItems.style.position = "unset";
+                //    paragraphItems.style.top = "-70px";
+                   // paragraphItems.style.left = "-760px";
+                    paragraphItems.appendChild(ulX);
+                }
+               paragraphItems.style.position ="relative";
+                
+     
+                imgElement.src = user.enquiryimagepathfromdb;
+                imgElement.style.width = '400px';
+                imgElement.style.height = '400px';
+                imgElement.style.border = "2px solid #333";
+                //imgElement.style.left = "-30px";
+                imgElementofReply.src = "replyicon.png";
+                imgElementofReply.style.width = "100px";
+                imgElementofReply.style.height = "100px";
+               // imgElementofReply.style.display ="inline-block";
+          
+                userContainer.appendChild(listItems);
+         //       paragraphItems.style.position = 'block';
+                childUserContainer.appendChild(imgElement);
+               
+                childUserContainer.appendChild(imgElementofReply);    
+             
+                childUserContainer.appendChild(paragraphItems);
+                       var textinputfromdoctor = document.createElement("textarea");
+                        textinputfromdoctor.style.resize = "none";
+                        textinputfromdoctor.id = "idoftextinputfromdoctor";
+                        textinputfromdoctor.name = "idoftextinputfromdoctor";
+                        textinputfromdoctor.zIndex = '100';
+                      textinputfromdoctor.style.position = "relative";
+                        textinputfromdoctor.style.margin = "50px";
+                        textinputfromdoctor.style.width = "400px";
+                        textinputfromdoctor.style.height = "400px";
+                        textinputfromdoctor.style.top = "-630px";
+                        textinputfromdoctor.style.left = "600px";
+                     //   textinputfromdoctor.style.top = "-500px";
+                        
+                        textinputfromdoctor.style.visibility ="hidden";
+                            checkboxforsendingtoreadeds.style.position = "relative";
+                            checkboxforsendingtoreadeds.style.width = "50px";
+                            checkboxforsendingtoreadeds.style.height = "50px";
+                            checkboxforsendingtoreadeds.style.top = "-200px";
+                            checkboxforsendingtoreadeds.style.left = "1150px";
+                            checkboxforsendingtoreadeds.style.visibility = "hidden";
+                        childUserContainer.appendChild(checkboxforsendingtoreadeds);
+                        childUserContainer.appendChild(checkboxforrefund);
+                        childUserContainer.appendChild(h5Elementcheckbox);
+                        childUserContainer.appendChild(h5Elementcheckboxrefund);
+                        childUserContainer.appendChild(textinputfromdoctor);
+                        childUserContainer.appendChild(buttonofsendingreply);
+                      //  childUserContainer.style.left = "150px";
+                      //stophere
+                        childUserContainer.style.display = "inline-block";
+                        userContainer.appendChild(childUserContainer);   
+                usersssList.appendChild(userContainer);
+
+                buttonofsendingreply.addEventListener("click", function(){
+                                   var adminConfirmed = confirm('Do you want to perform the action?');
+                                   if(adminConfirmed){
+                                      var finduserforsendreplytomongo = "";
+                                      var takenvaluefromdoctodb = "";
+                                        finduserforsendreplytomongo = user.username;
+                                        takenvaluefromdoctodb = textinputfromdoctor.value; 
+                                    fetch('/apiapiapi/sendDataForReply',   {          
+                                        method: 'POST',
+                                        headers: {
+                                        'Content-Type': 'application/json',
+                                                },
+                                        body: JSON.stringify({ data: finduserforsendreplytomongo,takenvaluefromdoctodb }),
+                                })  .then(response => response.json())
+                                .then(data => {
+                                    console.log('Server response:', data);
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                            }
+                            
+                    })
+              
+                userContainer.addEventListener("click",function(event){
+                    var clickedElement = event.target;
+                    if(clickedElement.tagName==='IMG' && clickedElement !== imgElementofReply ){
+                        
+                        if(imgElement.style.width === '400px'){
+                        imgElement.style.width = '700px';
+                        imgElement.style.height = '700px';
+                      //  paragraphItems.style.top = "-400px";
+                        textinputfromdoctor.style.visibility = "hidden";
+                        listItems.style.fontSize = '20px';
+                        }
+                        else{
+                            imgElement.style.width = '400px';
+                            imgElement.style.height = '400px';                          
+                            listItems.style.fontSize = '16px';    
+                      //      paragraphItems.style.top = "0px";
+                        }
+
+
+             } })
+                    
+                buttonofsendingreply.addEventListener("mouseover", function() {
+                  
+                    buttonofsendingreply.style.backgroundColor = "#008000"; // Change to a different color
+                });
+
+                // Add event listener for mouseout (hover out) effect
+                buttonofsendingreply.addEventListener("mouseout", function() {
+                
+                    buttonofsendingreply.style.backgroundColor = ""; // Reset to default or remove this line to keep the color
+                });
+                checkboxforrefund.addEventListener("click", function(){
+                    if (checkboxforrefund.checked) {
+                    const confirmed2 = confirm("Will be send to refund list");
+                    if(confirmed2){
+                        //readedusersssList.appendChild(userContainer);
+                        
+                        const usernameforfunc2 = user.username;
+                         const clicktrue2 = true;
+                         const clicktruereverse = false;
+                        funcofrefunded(usernameforfunc2,clicktrue2,clicktruereverse);
+                        location.reload();
+                    }
+                    if (!confirmed2) {
+                        event.preventDefault();
+                        checkboxforrefund.checked = false;
+                       }
+                    }
+                })
+                checkboxforsendingtoreadeds.addEventListener("click", function(){
+                    if (checkboxforsendingtoreadeds.checked) {
+                    const confirmed = confirm("Confirm if you read and finished your answer so you can send it to readed documents.");
+                    if(confirmed){
+                        //readedusersssList.appendChild(userContainer);
+                        
+                        const usernameforfunc = user.username;
+                        const clickfalse = false;
+                        funcofreaded(usernameforfunc,clickfalse);
+                        location.reload();
+                    }
+                    if (!confirmed) {
+                        event.preventDefault();
+                        checkboxforsendingtoreadeds.checked = false;
+                       }
+                    }
+                })
+             /*   userContainer.addEventListener("click", function(event){
+
+
+
+                })*/
+             userContainer.addEventListener("click", function(event){
+                    var clickedElement2 = event.target;
+                    if(clickedElement2 === imgElementofReply){
+                    
+                        imgElement.style.width = '400px';
+                        imgElement.style.height = '400px';
+                        if( textinputfromdoctor.style.visibility === "hidden"){
+                        textinputfromdoctor.style.visibility = "visible";
+                        buttonofsendingreply.style.visibility = "visible";
+                        checkboxforsendingtoreadeds.style.visibility = "visible";
+                        checkboxforrefund.style.visibility = "visible";
+                        h5Elementcheckbox.style.visibility = "visible";
+                        h5Elementcheckboxrefund.style.visibility = "visible";
+                        }
+                        else{ textinputfromdoctor.style.visibility = "hidden";
+                        buttonofsendingreply.style.visibility = "hidden";
+                        checkboxforsendingtoreadeds.style.visibility = "hidden";
+                        checkboxforrefund.style.visibility = "hidden";
+                        h5Elementcheckbox.style.visibility = "hidden";
+                        h5Elementcheckboxrefund.style.visibility = "hidden";
+                    }
+                    }
+
+               })
+            
+            }
+           //****
+            })
+        })
+
+})
+/*
+let usernameofchatter2 = "";
+function fetchfunctionforchat(usernameofchatter){
+usernameofchatter2 = usernameofchatter;
+}*/
+
+
+//fetch('/layoutchat/layitchatout').then(response=>{console.log('This is response',response)});
+
+
+
+
+
+
+fetch("/layoutchat/layitchatout").then(response=>response.json()).catch(error=>{console.log(error)})
+
+
+
+
+
+
+/*
+
+    fetch("/layoutchat/layitchatout").then(response=>response.json()).then(data=>{
+        data.forEach(messagee => {console.log(messagee);
+        const selectidofchathistoryonejs = document.getElementById("messagesrespondedbyserver2");
+            messagee.split('::::');
+            if(messagee.startsWith('D')){
+                const lis2 = document.createElement("li");
+                lis2.textContent = messagee;
+                selectidofchathistoryonejs.appendChild(lis2);
+            }
+   
+        } ).catch(error=>{console.error(error)}); 
+    })
+
+*/
+
+function funcofsendingchatfromadmin(nameofhim,message1){
+    
+    const nameofuseronchat = nameofhim;
+    const messagecontentofchat = message1;
+    console.log('admin page name of user',nameofuseronchat);
+    fetch('/myfetchapiforchat/bringthechat', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body : JSON.stringify({nameofuseronchat,messagecontentofchat})
+    }).then(response => response.JSON()).catch(error => {console.log(error)}); 
+
+}
+
+
+
+function funcofrefunded(useruser2, boolofrefund2,clicktruereverse){
+    fetch('/qwq/routeofrefunded', {
+        method: 'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({useruser2,boolofrefund2,clicktruereverse}),
+
+    }).then(response => response.JSON()).catch(error=>{console.log(error)} );
+}
+
+
+fetch('/tw/parsetherefundeds').then(response=>response.json()).then(data => {data.forEach(user=>{
+    const lislis = document.getElementById("ListofRefundeds"); 
+    if(user.willrefund){
+        const userContainer3 = document.createElement("div"); 
+                 userContainer3.style.display = 'block';
+                const childUserContainer3 = document.createElement("div");
+                const imgElement3 = document.createElement("img");
+                imgElement3.src = user.enquiryimagepathfromdb;
+                imgElement3.style.width = '400px';
+                imgElement3.style.height = '400px';
+                childUserContainer3.style.display = "inline-block";
+                const listItems3 = document.createElement("li");
+                listItems3.textContent = `Username:${user.username}, Name:${user.name}, Surname: ${user.surname}, Age: ${user.day}/${user.month}/${user.year}, Gender: ${user.gender} `;
+
+                userContainer3.appendChild(listItems3);
+              
+                const paragraphItems3 = document.createElement("p");
+                childUserContainer3.appendChild(imgElement3);
+                if(user.enquiryy){
+                    
+                    const ulX3 = document.createElement('ul');
+
+                    user.enquiryy.forEach(enquiry => {
+                        const lix3 = document.createElement('li');
+                        lix3.textContent = enquiry;
+                        ulX3.appendChild(lix3);
+                    });
+
+                    paragraphItems3.appendChild(ulX3);
+                }
+                paragraphItems3.style.position ="relative";
+                childUserContainer3.appendChild(paragraphItems3);
+                userContainer3.appendChild(childUserContainer3);
+                lislis.appendChild(userContainer3);
+
+    }
+})})
+
+
+
+
+function funcofreaded(useruser, boolofnotreaded){
+    fetch('/lll/routeofreaded', {
+        method: 'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({useruser,boolofnotreaded}),
+
+    }).then(response => response.JSON()).catch(error=>{console.log(error)} );
+}
+
+//*********************************************************************************************************************************************
+//Delete users from DB and load again and try fetch for routeforforreaded again.
+fetch('/ppp/routeforforreaded').then(response=>response.json()).then(data=> {data.forEach(
+    user=>{
+        const wListofReadeds = document.getElementById("ListofReadeds");
+        if(user.enquiryisreaded){
+                 const userContainer2 = document.createElement("div"); 
+                 userContainer2.style.display = 'block';
+                const childUserContainer2 = document.createElement("div");
+                const imgElement2 = document.createElement("img");
+                imgElement2.src = user.enquiryimagepathfromdb;
+                imgElement2.style.width = '400px';
+                imgElement2.style.height = '400px';
+                childUserContainer2.style.display = "inline-block";
+                const listItems2 = document.createElement("li");
+                listItems2.textContent = `Username:${user.username}, Name:${user.name}, Surname: ${user.surname}, Age: ${user.day}/${user.month}/${user.year}, Gender: ${user.gender} `;
+
+                userContainer2.appendChild(listItems2);
+              
+                const paragraphItems2 = document.createElement("p");
+                childUserContainer2.appendChild(imgElement2);
+                if(user.enquiryy){
+                    
+                    const ulX2 = document.createElement('ul');
+
+                    user.enquiryy.forEach(enquiry => {
+                        const lix2 = document.createElement('li');
+                        lix2.textContent = enquiry;
+                        ulX2.appendChild(lix2);
+                    });
+
+                    paragraphItems2.appendChild(ulX2);
+                }
+                paragraphItems2.style.position ="relative";
+                childUserContainer2.appendChild(paragraphItems2);
+                userContainer2.appendChild(childUserContainer2);
+                wListofReadeds.appendChild(userContainer2);
+
+                
+        }
+    }
+)})
+
+
+
+
+
+function letsdo(namettt){
+   
+    const myvalueqqq2 = namettt;
+console.log('console of myvalueq2', myvalueqqq2);
+    fetch('/fornamelayoutchat/secondpartofroute', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({myvalueqqq2})
+}).then(response => response.json()).catch(error => console.log(error));
+
+} 
+
+
+
+
+
+
+//______________________________ Border of code snippet of above one.
+
+
+ let endpoint = '';
+    const constbuttonusers = document.getElementById('buttonidlistallusers');
+  const dividoflivechattingwithdoc2 = document.getElementById("livechattingwithdoc2");
+ 
+async function myfuncforgimmeusers(){
+
+     await fetch(`/fetchusersforchat/gimmeUsers`)
+                    .then(response => response.json())
+                    .then(data => {
+                 
+                        const usersListforChat = document.getElementById("listtheusersforchat");
+                        usersListforChat.innerHTML = '';
+                        data.forEach(user => {
+                        const listItem2 = document.createElement("li");
+                        const smalliconforlistitem = document.createElement("img");
+                        smalliconforlistitem.src = "sendiconpng.png";
+                        smalliconforlistitem.style.width = "15px";
+                        smalliconforlistitem.style.height ="15px";
+                        smalliconforlistitem.id = "sendiconpngid";
+                        listItem2.textContent = `Username:${user.username}, Name:${user.name}, Surname: ${user.surname}, Age: ${user.day}/${user.month}/${user.year}, Gender: ${user.gender},Does Document Readed ? ${user.enquiryisreaded?'Yes it is readed':'No it is not readed'}, Will Refund ? ${user.willrefund ? 'Yes':'No'} `; 
+                     listItem2.appendChild(smalliconforlistitem);
+                        if(user.messagecountofuser>0){
+                            const putNumber = document.createElement("h4");
+                            const messageNot = document.createElement("h4");
+                            messageNot.textContent = `You have ${user.messagecountofuser} unreaded messages:`;
+                            messageNot.style.display = "inline-block";
+                            messageNot.id="messageNotid";
+                            listItem2.appendChild(messageNot);
+                            putNumber.innerHTML = user.messagecountofuser;
+                            putNumber.style.background = "red";
+                            putNumber.style.display = "inline-block";
+                            putNumber.style.borderRadius = "50%";
+                            putNumber.style.padding = "10px";
+                            putNumber.style.animation = "shake 1s ease-in-out infinite";
+                            putNumber.id = "putnumberid";
+                            listItem2.appendChild(putNumber);
+                        }
+                       
+                     smalliconforlistitem.addEventListener("click",function(){
+
+                        dividoflivechattingwithdoc2.style.visibility="visible";
+                        let usernameofchatter = `${user.username}`;
+                        console.log('usernameofchatterusernameofchatterusernameofchatter', usernameofchatter);
+                        takenameandforgo(usernameofchatter);
+                        triggerherechat();
+                        if(user.messagecountofuser>0){
+                            var cleanmsgID = document.getElementById("messageNotid");
+                            var cleannumID = document.getElementById("putnumberid");
+                            cleanmsgID.innerHTML = "";
+                            cleannumID.innerHTML = "";
+                            cleannumID.style.background = "none";
+                            cleannumID.style.animation = "none";
+                            cleannumID.remove();
+                            cleanmsgID.remove();
+                        }
+                     })
+                    
+                        usersListforChat.appendChild(listItem2);
+ 
+                    });
+                    
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+        
+          
+                }
+                
+
+
+                myfuncforgimmeusers();               
+/////////////////////////////////////////////////////
+
+
+             
+                    let nametakentakentaken =""; 
+              
+               async function takenameandforgo(namewwww){
+                      nametakentakentaken = namewwww;
+                     
+                     await funcoffetchfordisplay(nametakentakentaken);
+                    }
+
+
+                    
+async function funcoffetchfordisplay(namei){
+                    const nametakentakentaken2 = namei; 
+                  await  fetch('/fetchfordisplay/fetchfordisplay2', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({nametakentakentaken2}),
+                }).then(response=>response.json()).catch(error=>{console.log(error)})
+            }
+
+const selectidofchathistoryonejs = document.getElementById("messagesrespondedbyserver2");
+
+
+ socket.on('connection');
+
+
+ /*
+socket.on('chat-message7', (msg) => {
+  console.log('A user connected');
+
+ 
+ 
+    console.log('chat-messagechat-messagechat-messagechat-messagechat-messagechat-messagechat-messagechat-messagechat-messagechat-messagechat-messagechat-message');
+    const lis1 = document.createElement("li");
+                lis1.textContent = msg;
+                lis1.style.right = '0px';               
+                lis1.style.maxWidth = "600px";
+                lis1.style.fontWeight = "bolder";
+                lis1.style.listStyleType = "none";
+                lis1.style.wordWrap = "break-word"; 
+               selectidofchathistoryonejs.appendChild(lis1);
+  });
+
+  */
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+
+
+
+
+                    function sendMessageMessage2() { 
+
+                     
+           
+                        const messageInput = document.getElementById('messageInputChat2');
+
+                        const message = messageInput.value;
+
+                       socket.emit('chat-message7', message);
+                       socket.emit('chat-message99', message);
+                        console.log('in the sendmessage2 function',nametakentakentaken);
+                        funcofsendingchatfromadmin(nametakentakentaken,message);
+                     
+                       letsdo(nametakentakentaken);
+
+                        socket.on('connection', () => {
+                            console.log('client side connecty');
+                        })
+                        socket.emit('connection',()=>{
+                            message = messageInput.value
+                        })
+                        socket.on('disconnect', () => {
+                            console.log('Disconnected from socket');
+                        });
+                        messageInput.value = "";
+                        console.log('nameofhim', nameofhim);
+                       
+
+                        }
+                        socket.on('chat-message17',(msg)=>{
+    const lis98= document.createElement("li");
+                lis98.textContent = msg;
+                           
+                lis98.style.background = "purple";
+                lis98.style.fontWeight = "bolder";
+                lis98.style.maxWidth = "600px";
+            lis98.style.listStyleType = "none"; 
+            lis98.style.wordWrap = "break-word"; 
+            console.log('chat-message17 is worked seamlessly');
+             selectidofchathistoryonejs.appendChild(lis98);
+             functionofgimmeusers222();
+             myfuncforgimmeusers();
+            
+            }
+             
+             )
+
+
+function functionofgimmeusers222(){
+
+   axios.get('https://virtualbiochemistry.com/fetchusersforchat/gimmeUsers').then(function (response) {
+      // handle success
+      console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR',response.data);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+}
+
+
+
+
+
+                        socket.on('chat-message7',(msg)=>{
+    const lis9 = document.createElement("li");
+                lis9.textContent = msg;
+                lis9.style.textAlign = 'right';              
+                lis9.style.background = "green";
+                lis9.style.fontWeight = "bolder";
+                lis9.style.maxWidth = "600px";
+            lis9.style.listStyleType = "none"; 
+            lis9.style.wordWrap = "break-word"; 
+            console.log('chat-message7 is worked seamlessly');
+             selectidofchathistoryonejs.appendChild(lis9);
+             triggerMyHereChat();
+})     
+
+function triggerGimmeUsers(){
+  
+    fetch("/fetchusersforchat/gimmeUsers")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
+
+function triggerMyHereChat(){
+
+    
+    fetch("/herethechat/hereherechat")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
+
+                  /*      socket.on('chat-message7',(msg)=>{
+    const lis9 = document.createElement("li");
+                lis9.textContent = msg;
+                lis9.style.textAlign = 'right';              
+                lis9.style.background = "green";
+                lis9.style.fontWeight = "bolder";
+                lis9.style.maxWidth = "600px";
+            lis9.style.listStyleType = "none"; 
+            lis9.style.wordWrap = "break-word"; 
+            console.log('chat-message7 is worked seamlessly');
+             selectidofchathistoryonejs.appendChild(lis9);
+})     */               
+let originalString ="";
+function triggerherechat(){
+
+    const selectidofchathistoryonejs = document.getElementById("messagesrespondedbyserver2");
+    selectidofchathistoryonejs.innerHTML = '';
+                        fetch('/herethechat/hereherechat').then(response=>response.json()).then(data => {
+                            console.log('Raw data:', data);
+                            console.log(Array.isArray(data));
+                           
+                            data.forEach(edata =>{ 
+                                console.log('ssssssssssssssssssssssssss');
+            edata.split('::::');
+          
+            if(edata.startsWith('D')){
+                
+            
+                let originalString = edata;
+                let stringToRemove = "D::::";
+                let newString = originalString.replace(stringToRemove, "");
+                const lis2 = document.createElement("li");
+                lis2.textContent = newString;
+                lis2.style.textAlign = 'right';              
+                lis2.style.background = "green";
+                lis2.style.fontWeight = "bolder";
+                lis2.style.maxWidth = "600px";
+            lis2.style.listStyleType = "none"; 
+            lis2.style.wordWrap = "break-word"; 
+        
+             selectidofchathistoryonejs.appendChild(lis2);
+            }
+            if(edata.startsWith('U')){
+                let originalString = edata;
+                let stringToRemove = "U::::";
+                let newString = originalString.replace(stringToRemove, "");
+                const lis3 = document.createElement("li");
+                lis3.textContent = newString;
+                lis3.style.right = '0px';               
+                lis3.style.maxWidth = "600px";
+                lis3.style.fontWeight = "bolder";
+                lis3.style.listStyleType = "none";
+                lis3.style.wordWrap = "break-word"; 
+                selectidofchathistoryonejs.appendChild(lis3);
+            }
+        else{
+            console.log('msgs doesnt took');
+        }
+        
+                            })
+                        })
+
+                    }            
+
+                    fetch(`/fetchedAllUsersPath/getUsers`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const usersList = document.getElementById("usersList");
+                        data.forEach(user => {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = `Name:${user.name}, Surname: ${user.surname}, Age: ${user.day}/${user.month}/${user.year}, Gender: ${user.gender} `; 
+                        usersList.appendChild(listItem);
+                    });
+
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+
+               
+
+
+
+
+
+
+
+
+
+//___________________________________________
+        const cobuttonidlistallusers = document.getElementById("buttonidlistallusers");
+        const coListofNotReaded = document.getElementById("ListofNotReaded");
+        const codisplaythechatwithusers = document.getElementById("displaythechatwithusers");
+        const cobuttonopenchatwithusers = document.getElementById("openchatwithusers");
+        const coListofReadeds = document.getElementById("ListofReadeds");
+        const codisplayingallusers = document.getElementById("displayingallusers");
+        cobuttonidlistallusers.addEventListener("click", function(){
+            if(codisplayingallusers.style.visibility==="visible"){
+                codisplayingallusers.style.visibility = "hidden";
+                codisplayinreadeddoc.style.visibility = "hidden";
+                codisplayingalldocs.style.visibility = "hidden";
+                codisplayingallnotreadeddocs.style.visibility = "hidden";
+                coListofNotReaded.style.display = "none";
+                coListofReadeds.style.display = "none";
+                codisplaythechatwithusers.style.visibility = "hidden";
+                dividoflivechattingwithdoc2.style.visibility = "hidden";
+
+            }
+        else{
+            codisplayinreadeddoc.style.visibility = "hidden";
+            coListofReadeds.style.display = "none";
+            codisplayingalldocs.style.visibility = "hidden";
+            codisplayingallnotreadeddocs.style.visibility = "hidden";
+            coListofNotReaded.style.display = "none";
+            codisplayingallusers.style.visibility = "visible";
+            codisplaythechatwithusers.style.visibility = "hidden";
+            dividoflivechattingwithdoc2.style.visibility = "hidden";
+        }
+            
+        })
+
+    const codisplayinreadeddoc = document.getElementById("displayinreadeddoc");
+    const cobuttonidreaded = document.getElementById("buttonidreaded");
+    cobuttonidreaded.addEventListener("click", function(){
+    if(codisplayinreadeddoc.style.visibility==="visible"){
+        codisplaythechatwithusers.style.visibility = "hidden";
+        codisplayingallusers.style.visibility = "hidden";
+    codisplayingallnotreadeddocs.style.visibility = "hidden";
+    coListofNotReaded.style.display = "none";
+    codisplayingalldocs.style.visibility = "hidden";
+    codisplayinreadeddoc.style.visibility = "hidden";
+    coListofReadeds.style.display = "none";
+    dividoflivechattingwithdoc2.style.visibility = "hidden";
+
+        }
+
+    else{
+    codisplayingallusers.style.visibility = "hidden";
+    codisplayingallnotreadeddocs.style.visibility = "hidden";
+    coListofNotReaded.style.display = "none";
+    codisplayingalldocs.style.visibility = "hidden";
+    codisplaythechatwithusers.style.visibility = "hidden";
+    codisplayinreadeddoc.style.visibility = "visible";
+    coListofReadeds.style.display = "inline-block";
+    dividoflivechattingwithdoc2.style.visibility = "hidden";
+    }
+            
+        
+    })
+    const cobuttonidalldocuments = document.getElementById("buttonidalldocuments");
+    const codisplayingalldocs = document.getElementById("displayingalldocs");
+    cobuttonidalldocuments.addEventListener("click", function(){
+    if(codisplayingalldocs.style.visibility==="visible"){   
+        codisplayingalldocs.style.visibility = "hidden";
+        codisplaythechatwithusers.style.visibility = "hidden";
+        codisplayingallnotreadeddocs.style.visibility = "hidden";
+        coListofNotReaded.style.display = "none";
+        codisplayingallusers.style.visibility = "hidden";
+        codisplayinreadeddoc.style.visibility = "hidden";
+        coListofReadeds.style.display = "none";
+        dividoflivechattingwithdoc2.style.visibility = "hidden";
+        }
+     else{
+        codisplaythechatwithusers.style.visibility = "hidden";
+        codisplayingallnotreadeddocs.style.visibility = "hidden";
+        coListofNotReaded.style.display = "none";
+        codisplayingallusers.style.visibility = "hidden";
+        codisplayinreadeddoc.style.visibility = "hidden";    
+        coListofReadeds.style.display = "none";
+        codisplayingalldocs.style.visibility="visible";
+        dividoflivechattingwithdoc2.style.visibility = "hidden";
+     }
+    })
+   
+    const cobuttonidnotreaded = document.getElementById("buttonidnotreaded");
+    const codisplayingallnotreadeddocs = document.getElementById("displayingallnotreadeddocs");
+    cobuttonidnotreaded.addEventListener("click", function(){
+    if(codisplayingallnotreadeddocs.style.visibility==="visible"){        
+        codisplayingallnotreadeddocs.style.visibility = "hidden";
+        coListofNotReaded.style.display = "none";
+        codisplaythechatwithusers.style.visibility = "hidden";
+        codisplayingalldocs.style.visibility = "hidden";
+
+        codisplayinreadeddoc.style.visibility = "hidden";
+        coListofReadeds.style.visibility = "none";
+        codisplayingallusers.style.visibility = "hidden";
+        dividoflivechattingwithdoc2.style.visibility = "hidden";
+
+        }
+   else{
+    codisplayingalldocs.style.visibility = "hidden";
+    codisplaythechatwithusers.style.visibility = "hidden";
+    codisplayinreadeddoc.style.visibility = "hidden";
+    coListofReadeds.style.display = "none";
+    codisplayingallusers.style.visibility = "hidden";
+    codisplayingallnotreadeddocs.style.visibility="visible";
+    coListofNotReaded.style.display = "inline-block";
+    dividoflivechattingwithdoc2.style.visibility = "hidden";
+
+   }
+        
+    })
+    cobuttonopenchatwithusers.addEventListener("click",function(){
+        if(codisplaythechatwithusers.style.visibility === "visible"){
+        
+            codisplaythechatwithusers.style.visibility = "hidden";
+             codisplayingallnotreadeddocs.style.visibility = "hidden";
+            coListofNotReaded.style.display = "none";
+            codisplaythechatwithusers.style.visibility = "hidden";
+            codisplayingalldocs.style.visibility = "hidden";
+
+            codisplayinreadeddoc.style.visibility = "hidden";
+            coListofReadeds.style.visibility = "none";
+            codisplayingallusers.style.visibility = "hidden";
+            dividoflivechattingwithdoc2.style.visibility = "hidden";
+            }
+            else{
+            codisplaythechatwithusers.style.visibility = "visible";
+            codisplayingalldocs.style.visibility = "hidden";
+            codisplayinreadeddoc.style.visibility = "hidden";
+            coListofReadeds.style.visibility = "none";
+            codisplayingallusers.style.visibility = "hidden";
+            codisplayingallnotreadeddocs.style.visibility = "hidden";
+            coListofNotReaded.style.display = "none";
+            dividoflivechattingwithdoc2.style.visibility = "hidden";
+
+            }
+
+        }
+    )
+   
+
+
+
+
+
+//30.11.2023 you here. accomplish it
+
+
+
+
+
+
+
+/*
+
+                sendDataToServer(textinputfromdoctor.value);
+                function sendDataToServer(data) {
+                fetch('/yourServerEndpoint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: data }),
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Success:', result);
+                    // Handle success if needed
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle error if needed
+                });
+__________________________________________________
+                    const zz = await Credentialssa.findOne({ username: { $regex: new RegExp("^" + finduserforsendreplytomongo + "$", "i") }});  
+                   
+                    buttonofsendingreply.addEventListener("click", async function(){
+                                            zz.replyfromdoctor = textinputfromdoctor.value;
+                                            await buttonofsendingreply.save();
+                    })
+*/
+
+
+</script>
+
+
+<script src="apijs.js"></script>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Gürel Lab Result Consultation-Admin Page</title>
+    <link rel="stylesheet" type="text/css" href="cssofnewformat.css">
+</head>
+<body id="bodyidofadminpage">
+    <div id="upsectiondiv">
+        <h1 id="h1idadmin">Admin Page</h1>
+        <div id="upsectioncolumndiv">
+            <form action="/search" method="get">
+                <input id="searchtabinadminpage" type="text" name="searchtabinadminpage" placeholder="Search a user, document or photograph by its name...">
+                <input type="submit" name="searchhh"value="Search">
+            </form>
+          
+          <button id="LogoutAdminButton">Logout from account</button>
+          <a id="backmenuadminbutton" href="newformat.html">Return to Main Page</a>
+        </div>
+    </div>
+    <div id="sidesectiondiv">
+        <div id="sidesectionrowdiv">
+                <form action="actioninallusers" id="idofactionallusers" name="idofactionallusers" method="GET">
+                <button type="submit" id="buttonidlistallusers">See All Users </button><br>
+                </form>
+                <button type="submit" id="buttonidalldocuments">All Documents </button>
+                <button type="submit" id="buttonidreaded">Readed Documents</button>
+                <button type="submit" id="buttonidnotreaded">Not Readed Documents</button>
+         
+        </div>
+    </div>
+    <div id="displayingallusers" name="displayingallusers">
+        <h1 id="listingusers">List of All Users</h1>
+        <hr>
+    </div>
+    <div id="displayinreadeddoc" name="displayinreadeddoc">
+        <h1 id="listingreadeddocs">All readed documents are here</h1>
+        <hr>
+    </div>
+    <div id="displayingalldocs" name="displayingalldocs">
+        <h1 id="listingalldocs">Full view to documents of clients</h1>
+        <hr>
+    </div>
+    <div id="displayingallnotreadeddocs" name="displayingallnotreadeddocs">
+        <h1 id="listingallnotreadeddocs">Not readed documents</h1>
+        <hr>
+    </div>
+</body>
+<script>
+        const cobuttonidlistallusers = document.getElementById("buttonidlistallusers");
+
+        const codisplayingallusers = document.getElementById("displayingallusers");
+        cobuttonidlistallusers.addEventListener("click", function(){
+            if(codisplayingallusers.style.visibility==="visible"){
+                codisplayingallusers.style.visibility = "hidden";
+                codisplayinreadeddoc.style.visibility = "hidden";
+                codisplayingalldocs.style.visibility = "hidden";
+                codisplayingallnotreadeddocs.style.visibility = "hidden";
+
+            }
+        else{codisplayingallusers.style.visibility === "hidden"
+            codisplayinreadeddoc.style.visibility = "hidden";
+            codisplayingalldocs.style.visibility = "hidden";
+            codisplayingallnotreadeddocs.style.visibility = "hidden";
+
+            codisplayingallusers.style.visibility = "visible";
+
+        }
+            
+        })
+
+    const codisplayinreadeddoc = document.getElementById("displayinreadeddoc");
+    const cobuttonidreaded = document.getElementById("buttonidreaded");
+    cobuttonidreaded.addEventListener("click", function(){
+    if(codisplayinreadeddoc.style.visibility==="visible"){
+ 
+        codisplayingallusers.style.visibility = "hidden";
+    codisplayingallnotreadeddocs.style.visibility = "hidden";
+    codisplayingalldocs.style.visibility = "hidden";
+    codisplayinreadeddoc.style.visibility = "hidden";
+       
+
+        }
+    else{codisplayinreadeddoc.style.visibility === "hidden"
+    codisplayingallusers.style.visibility = "hidden";
+    codisplayingallnotreadeddocs.style.visibility = "hidden";
+    codisplayingalldocs.style.visibility = "hidden";
+
+    codisplayinreadeddoc.style.visibility = "visible";
+    }
+            
+        
+    })
+    const cobuttonidalldocuments = document.getElementById("buttonidalldocuments");
+    const codisplayingalldocs = document.getElementById("displayingalldocs");
+    cobuttonidalldocuments.addEventListener("click", function(){
+    if(codisplayingalldocs.style.visibility==="visible"){   
+        codisplayingalldocs.style.visibility = "hidden";
+
+        codisplayingallnotreadeddocs.style.visibility = "hidden";
+        codisplayingallusers.style.visibility = "hidden";
+        codisplayinreadeddoc.style.visibility = "hidden";
+        }
+     else{codisplayingalldocs.style.visibility==="hidden"
+    
+        codisplayingallnotreadeddocs.style.visibility = "hidden";
+        codisplayingallusers.style.visibility = "hidden";
+        codisplayinreadeddoc.style.visibility = "hidden";    
+        codisplayingalldocs.style.visibility="visible";
+     }
+    })
+    const cobuttonidnotreaded = document.getElementById("buttonidnotreaded");
+    const codisplayingallnotreadeddocs = document.getElementById("displayingallnotreadeddocs");
+    cobuttonidnotreaded.addEventListener("click", function(){
+    if(codisplayingallnotreadeddocs.style.visibility==="visible"){        
+        codisplayingallnotreadeddocs.style.visibility = "hidden";
+
+        codisplayingalldocs.style.visibility = "hidden";
+
+        codisplayinreadeddoc.style.visibility = "hidden";
+        codisplayingallusers.style.visibility = "hidden";
+
+        }
+   else{codisplayingallnotreadeddocs.style.visibility === "hidden"
+    codisplayingalldocs.style.visibility = "hidden";
+
+    codisplayinreadeddoc.style.visibility = "hidden";
+    codisplayingallusers.style.visibility = "hidden";
+    codisplayingallnotreadeddocs.style.visibility="visible";
+
+   }
+        
+    })
+</script>
+<script src="apijs.js"></script>
+</html>
