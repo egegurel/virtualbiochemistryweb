@@ -1,1 +1,1 @@
-Welcome to my full-stack dev. project
+Welcome to my full-stack development project
